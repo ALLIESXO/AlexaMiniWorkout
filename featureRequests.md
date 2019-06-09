@@ -16,6 +16,7 @@
 
 * Ask if training was intense enough (After) 
 
+* Monthly reports + reminders for workout using the telegram chatbot api. (perhaps we need to create own user ids in DB and use them as identifier for telegram chatbot?)
 
 #### Interesting sources:
 * "Modelling Proactive Behaviour of Conersational Interfaces" - Marcello L'Abbate, Universität Darmstadt
