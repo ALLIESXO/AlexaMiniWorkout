@@ -3,6 +3,7 @@
 * Slightly change of training intensity based on users mood. (Quick Question to be asked when starting the skill) 
 
 * Slightly change of training intensity based on weather conditions. (Use IP address to determine weather when no profile is given)
+  * https://developer.amazon.com/de/docs/custom-skills/device-address-api.html
 
 * Slightly change of training intensity based on time. (Morning workout is generally harder than evening workout)
 
