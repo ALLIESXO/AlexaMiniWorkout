@@ -3,7 +3,7 @@
 <!-- Generiert durch Microsoft Visio, SVG Export Programmstart-AlexaHomeWorkout.svg Page-1 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
 		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="11.6929in" height="8.26772in"
-		viewBox="0 0 841.89 595.276" xml:space="preserve" color-interpolation-filters="sRGB" class="st22">
+		viewBox="0 0 841.89 595.276" xml:space="preserve" color-interpolation-filters="sRGB" class="st23">
 	<v:documentProperties v:langID="1031" v:metric="true" v:viewMarkup="false">
 		<v:userDefs>
 			<v:ud v:nameU="msvNoAutoConnect" v:prompt="" v:val="VT0(0):26"/>
@@ -19,10 +19,10 @@
 		.st5 {fill:#ffffff;stroke:#88260b;stroke-linecap:butt;stroke-width:1.25}
 		.st6 {fill:#a53010;font-family:Franklin Gothic Book;font-size:1.00001em}
 		.st7 {font-size:1em}
-		.st8 {marker-end:url(#mrkr5-22);stroke:#5d6e43;stroke-linecap:butt;stroke-width:1}
+		.st8 {marker-end:url(#mrkr5-21);stroke:#5d6e43;stroke-linecap:butt;stroke-width:1}
 		.st9 {fill:#5d6e43;fill-opacity:1;stroke:#5d6e43;stroke-opacity:1;stroke-width:0.28409090909091}
-		.st10 {fill:url(#grad0-31);stroke:#5d6e43;stroke-linecap:butt;stroke-width:1.25}
-		.st11 {fill:url(#grad0-72);stroke:#88260b;stroke-linecap:butt;stroke-width:1.25}
+		.st10 {fill:url(#grad0-25);stroke:#5d6e43;stroke-linecap:butt;stroke-width:1.25}
+		.st11 {fill:url(#grad0-47);stroke:#88260b;stroke-linecap:butt;stroke-width:1.25}
 		.st12 {fill:#88260b;font-family:Franklin Gothic Book;font-size:1.00001em}
 		.st13 {fill:none;stroke:none;stroke-linecap:butt;stroke-width:1.25}
 		.st14 {fill:#7f7f7f;font-family:Franklin Gothic Book;font-size:1.00001em}
@@ -30,10 +30,11 @@
 		.st16 {fill:#697c4c;font-family:Franklin Gothic Book;font-size:1.00001em}
 		.st17 {fill:#ed6d4b;font-family:Franklin Gothic Book;font-size:1.99999em;font-weight:bold}
 		.st18 {font-size:1em;text-decoration:underline}
-		.st19 {fill:#ffffff}
-		.st20 {stroke:#5d6e43;stroke-linecap:butt;stroke-width:1.25}
-		.st21 {fill:#ffffff;stroke:#5d6e43;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.25}
-		.st22 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+		.st19 {fill:#f3f3f2}
+		.st20 {stroke:#615b44;stroke-linecap:butt;stroke-width:1.25}
+		.st21 {marker-end:url(#mrkr5-231);stroke:#d8d8d8;stroke-linecap:butt;stroke-width:1.5}
+		.st22 {fill:#d8d8d8;fill-opacity:1;stroke:#d8d8d8;stroke-opacity:1;stroke-width:0.37313432835821}
+		.st23 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
 	]]>
 	</style>
 
@@ -43,12 +44,12 @@
 			<stop offset="0.34" stop-color="#dbe2cf" stop-opacity="1"/>
 			<stop offset="0.96" stop-color="#b6c497" stop-opacity="1"/>
 		</linearGradient>
-		<linearGradient id="grad0-31" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
+		<linearGradient id="grad0-25" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
 			<stop offset="0.02" stop-color="#e5e7e2" stop-opacity="1"/>
 			<stop offset="0.34" stop-color="#d5d9d0" stop-opacity="1"/>
 			<stop offset="0.96" stop-color="#a6b09a" stop-opacity="1"/>
 		</linearGradient>
-		<linearGradient id="grad0-72" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
+		<linearGradient id="grad0-47" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
 			<stop offset="0.25" stop-color="#bf8c87" stop-opacity="1"/>
 			<stop offset="0.97" stop-color="#b1675f" stop-opacity="1"/>
 		</linearGradient>
@@ -57,9 +58,13 @@
 		<g id="lend5">
 			<path d="M 2 1 L 0 0 L 1.98117 -0.993387 C 1.67173 -0.364515 1.67301 0.372641 1.98465 1.00043 " style="stroke:none"/>
 		</g>
-		<marker id="mrkr5-22" class="st9" v:arrowType="5" v:arrowSize="2" v:setback="6.16" refX="-6.16" orient="auto"
+		<marker id="mrkr5-21" class="st9" v:arrowType="5" v:arrowSize="2" v:setback="6.16" refX="-6.16" orient="auto"
 				markerUnits="strokeWidth" overflow="visible">
 			<use xlink:href="#lend5" transform="scale(-3.52,-3.52) "/>
+		</marker>
+		<marker id="mrkr5-231" class="st22" v:arrowType="5" v:arrowSize="2" v:setback="4.69" refX="-4.69" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend5" transform="scale(-2.68,-2.68) "/>
 		</marker>
 	</defs>
 	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
@@ -70,7 +75,7 @@
 		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
 				v:shadowOffsetY="-8.50394"/>
 		<v:layer v:name="Verbinder" v:index="0"/>
-		<g id="shape1-1" v:mID="1" v:groupContext="shape" transform="translate(56.6929,-322.275)">
+		<g id="shape1-1" v:mID="1" v:groupContext="shape" transform="translate(85.0394,-77.0323)">
 			<title>Anfangszustand</title>
 			<desc>Programmstart</desc>
 			<v:userDefs>
@@ -80,132 +85,85 @@
 			<v:textRect cx="17.7579" cy="555.407" width="86.89" height="22.4037"/>
 			<ellipse cx="17.0079" cy="578.268" rx="17.0079" ry="17.0079" class="st1"/>
 			<text x="-20.18" y="559.01" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Programmstart</text>		</g>
-		<g id="group2-6" transform="translate(134.914,-302.479)" v:mID="2" v:groupContext="group">
+		<g id="group2-6" transform="translate(42.3983,-309.679)" v:mID="2" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<title>Zustand</title>
 			<g id="shape2-7" v:mID="2" v:groupContext="groupContent">
-				<rect x="0" y="521.668" width="210.571" height="73.6076" rx="8.50394" ry="8.50394" class="st3"/>
+				<rect x="0" y="536.068" width="119.298" height="59.2075" rx="8.50394" ry="8.50394" class="st3"/>
 			</g>
-			<g id="shape3-9" v:mID="3" v:groupContext="shape" transform="translate(0,-51.2039)">
+			<g id="shape3-9" v:mID="3" v:groupContext="shape" transform="translate(0,-36.8038)">
 				<title>Tabelle.3</title>
-				<desc>Greeting</desc>
+				<desc>Workout auswahl</desc>
 				<v:userDefs>
 					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Title)"/>
 				</v:userDefs>
 				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-				<v:textRect cx="105.285" cy="584.074" width="210.58" height="22.4037"/>
-				<path d="M8.5 595.28 L202.07 595.28 A8.50394 8.50394 -180 0 0 210.57 586.77 L210.57 581.38 A8.50394 8.50394 -180
-							 0 0 202.07 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 -0 581.38 L0 586.77 A8.50394 8.50394 -180 0
-							 0 8.5 595.28 Z" class="st3"/>
-				<text x="83.73" y="587.67" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Greeting</text>			</g>
+				<v:textRect cx="59.6489" cy="584.074" width="119.3" height="22.4037"/>
+				<path d="M8.5 595.28 L110.79 595.28 A8.50394 8.50394 -180 0 0 119.3 586.77 L119.3 581.38 A8.50394 8.50394 -180 0
+							 0 110.79 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 0 581.38 L0 586.77 A8.50394 8.50394 -180 0 0 8.5
+							 595.28 Z" class="st3"/>
+				<text x="15.91" y="587.67" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Workout auswahl</text>			</g>
 			<g id="shape4-12" v:mID="4" v:groupContext="shape">
 				<title>Tabelle.4</title>
-				<desc>Willkommen zu deinem Home Workout. Deine Punktzahl beträgt xx...</desc>
+				<desc>Welches Workout möchtest du starten?</desc>
 				<v:userDefs>
 					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Body)"/>
 				</v:userDefs>
 				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-				<v:textRect cx="105.285" cy="569.674" width="210.58" height="51.2039"/>
-				<path d="M8.5 595.28 L202.07 595.28 A8.50394 8.50394 -180 0 0 210.57 586.77 L210.57 552.58 A8.50394 8.50394 -180
-							 0 0 202.07 544.07 L8.5 544.07 A8.50394 8.50394 -180 0 0 -0 552.58 L0 586.77 A8.50394 8.50394 -180 0
-							 0 8.5 595.28 Z" class="st5"/>
-				<text x="4" y="558.87" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>Willkommen zu deinem Home Workout.<v:lf/><tspan
-							x="4" dy="1.2em" class="st7">Deine Punktzahl beträgt xxx. Weiter so!<v:lf/></tspan><tspan x="4"
-							dy="1.2em" class="st7">Möchtest du ein Workout wählen ... </tspan> </text>			</g>
+				<v:textRect cx="59.6489" cy="576.874" width="119.3" height="36.8038"/>
+				<path d="M8.5 595.28 L110.79 595.28 A8.50394 8.50394 -180 0 0 119.3 586.77 L119.3 566.98 A8.50394 8.50394 -180 0
+							 0 110.79 558.47 L8.5 558.47 A8.50394 8.50394 -180 0 0 0 566.98 L0 586.77 A8.50394 8.50394 -180 0 0 8.5
+							 595.28 Z" class="st5"/>
+				<text x="4" y="573.27" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>Welches Workout<v:lf/><tspan x="4"
+							dy="1.2em" class="st7">möchtest du starten?</tspan></text>			</g>
 		</g>
-		<g id="shape9-17" v:mID="9" v:groupContext="shape" v:layerMember="0" transform="translate(90.7087,-332.197)">
+		<g id="shape9-16" v:mID="9" v:groupContext="shape" v:layerMember="0" transform="translate(94.9606,-111.048)">
 			<title>Dynamischer Verbinder</title>
-			<path d="M0 588.19 L38.05 588.19" class="st8"/>
+			<path d="M7.09 595.28 L7.09 522.24" class="st8"/>
 		</g>
-		<g id="shape25-23" v:mID="25" v:groupContext="shape" v:layerMember="0" transform="translate(321.39,-302.479)">
-			<title>Dynamischer Verbinder.25</title>
-			<path d="M7.09 595.28 L7.09 645.81" class="st8"/>
-		</g>
-		<g id="shape24-28" v:mID="24" v:groupContext="shape" transform="translate(311.469,-211.771)">
+		<g id="shape24-22" v:mID="24" v:groupContext="shape" transform="translate(255.118,-202.844)">
 			<title>Auswahl</title>
-			<desc>&#34;Einstellungen&#34;</desc>
+			<desc>&#34;Benutzer wechseln /anlegen&#34;</desc>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-			<v:textRect cx="17.0079" cy="606.477" width="171.1" height="22.4037"/>
+			<v:textRect cx="17.0079" cy="613.678" width="113.64" height="36.8038"/>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
-			<text x="20.97" y="610.08" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>&#34;Einstellungen&#34;</text>		</g>
-		<g id="shape29-33" v:mID="29" v:groupContext="shape" v:layerMember="0" transform="translate(328.476,-211.771)">
-			<title>Dynamischer Verbinder.29</title>
-			<path d="M0 595.28 L0 674.74 L-24.42 674.74" class="st8"/>
-		</g>
-		<g id="group26-38" transform="translate(44.2618,-81.1967)" v:mID="26" v:groupContext="group">
-			<v:userDefs>
-				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
-			</v:userDefs>
-			<title>Zustand.26</title>
-			<g id="shape26-39" v:mID="26" v:groupContext="groupContent">
-				<rect x="0" y="493.048" width="253.638" height="102.228" rx="8.50394" ry="8.50394" class="st3"/>
-			</g>
-			<g id="shape27-41" v:mID="27" v:groupContext="shape" transform="translate(0,-79.8238)">
-				<title>Tabelle.27</title>
-				<desc>Settings</desc>
-				<v:userDefs>
-					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Title)"/>
-				</v:userDefs>
-				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-				<v:textRect cx="126.819" cy="584.074" width="253.64" height="22.4037"/>
-				<path d="M8.5 595.28 L245.13 595.28 A8.50394 8.50394 -180 0 0 253.64 586.77 L253.64 581.38 A8.50394 8.50394 -180
-							 0 0 245.13 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 -0 581.38 L0 586.77 A8.50394 8.50394 -180 0
-							 0 8.5 595.28 Z" class="st3"/>
-				<text x="106.21" y="587.67" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Settings</text>			</g>
-			<g id="shape28-44" v:mID="28" v:groupContext="shape">
-				<title>Tabelle.28</title>
-				<desc>User ID (get) Username (get/set) Schwierigkeitsstufe (get/set...</desc>
-				<v:userDefs>
-					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Body)"/>
-				</v:userDefs>
-				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-				<v:textRect cx="126.819" cy="555.454" width="253.64" height="80.0041"/>
-				<path d="M8.5 595.28 L245.13 595.28 A8.50394 8.50394 -180 0 0 253.64 586.77 L253.64 523.96 A8.50394 8.50394 -180
-							 0 0 245.13 515.45 L8.5 515.45 A8.50394 8.50394 -180 0 0 -0 523.96 L0 586.77 A8.50394 8.50394 -180 0
-							 0 8.5 595.28 Z" class="st5"/>
-				<text x="4" y="530.25" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>User ID (get) <v:lf/><tspan x="4"
-							dy="1.2em" class="st7">Username (get/set)<v:lf/></tspan><tspan x="4" dy="1.2em" class="st7">Schwierigkeitsstufe (get/set)<v:lf/></tspan><tspan
-							x="4" dy="1.2em" class="st7">gesammelte Daten (Trainingsplan, Stimmungen, </tspan><tspan x="4"
-							dy="1.2em" class="st7">Trainingszeiten, Punktzahl) löschen</tspan></text>			</g>
-		</g>
-		<g id="shape40-51" v:mID="40" v:groupContext="shape" transform="translate(143.474,-424.369)">
+			<text x="-31.31" y="610.08" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>&#34;Benutzer wechseln<v:lf/><tspan
+						x="-7.86" dy="1.2em" class="st7">/anlegen&#34;</tspan></text>		</g>
+		<g id="shape40-28" v:mID="40" v:groupContext="shape" transform="translate(85.0394,-474.39)">
 			<title>Auswahl.40</title>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
 		</g>
-		<g id="shape42-54" v:mID="42" v:groupContext="shape" v:layerMember="0" transform="translate(345.484,-332.197)">
+		<g id="shape42-31" v:mID="42" v:groupContext="shape" v:layerMember="0" transform="translate(161.696,-332.197)">
 			<title>Dynamischer Verbinder.10</title>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
 			</v:userDefs>
-			<path d="M0 588.19 L61.12 588.19" class="st8"/>
+			<path d="M0 588.19 L257.34 588.19" class="st8"/>
 		</g>
-		<g id="shape43-59" v:mID="43" v:groupContext="shape" v:layerMember="0" transform="translate(151.978,-376.087)">
+		<g id="shape43-36" v:mID="43" v:groupContext="shape" v:layerMember="0" transform="translate(109.134,-368.887)">
 			<title>Dynamischer Verbinder.10.43</title>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
 			</v:userDefs>
-			<path d="M5.67 595.28 L8.5 595.28 L8.5 553.15" class="st8"/>
+			<path d="M-7.09 595.28 L-7.09 495.93" class="st8"/>
 		</g>
-		<g id="shape21-64" v:mID="21" v:groupContext="shape" transform="translate(412.766,-322.275)">
+		<g id="shape21-41" v:mID="21" v:groupContext="shape" transform="translate(425.197,-322.275)">
 			<title>Auswahl.21</title>
-			<desc>&#34;zufälliges Workout starten&#34;</desc>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-			<v:textRect cx="14.1732" cy="617.816" width="94.94" height="22.8575"/>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
-			<text x="-14.29" y="614.22" class="st2" v:langID="1031"><v:paragraph/><v:tabList/>&#34;zufälliges <v:newlineChar/><tspan
-						x="-29.29" dy="1.2em" class="st7">Workout starten&#34;</tspan>                                                    </text>		</g>
-		<g id="shape48-69" v:mID="48" v:groupContext="shape" transform="translate(660.791,-51.837)">
+		</g>
+		<g id="shape48-44" v:mID="48" v:groupContext="shape" transform="translate(660.791,-51.837)">
 			<title>Anfangszustand.48</title>
 			<desc>Starte Workout</desc>
 			<v:userDefs>
@@ -215,37 +173,33 @@
 			<v:textRect cx="78.1765" cy="579.56" width="87.2" height="22.4037"/>
 			<ellipse cx="17.0079" cy="579.685" rx="17.0079" ry="15.5906" class="st11"/>
 			<text x="40.08" y="583.16" class="st12" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Starte Workout</text>		</g>
-		<g id="shape49-74" v:mID="49" v:groupContext="shape" v:layerMember="0" transform="translate(429.774,-322.275)">
+		<g id="shape49-49" v:mID="49" v:groupContext="shape" v:layerMember="0" transform="translate(442.205,-322.275)">
 			<title>Dynamischer Verbinder.49</title>
-			<path d="M0 595.28 L0 850.12 L224.86 850.12" class="st8"/>
+			<path d="M0 595.28 L0 850.12 L212.43 850.12" class="st8"/>
 		</g>
-		<g id="shape50-79" v:mID="50" v:groupContext="shape" v:layerMember="0" transform="translate(66.6142,-183.424)">
-			<title>Dynamischer Verbinder.50</title>
-			<path d="M7.09 595.28 L7.09 462.58" class="st8"/>
-		</g>
-		<g id="shape56-84" v:mID="56" v:groupContext="shape" transform="translate(25.4902,-466.731)">
+		<g id="shape56-54" v:mID="56" v:groupContext="shape" transform="translate(94.0787,-458.385)">
 			<title>Tabelle.56</title>
 			<desc>„Workout wählen“</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="76" cy="585.276" width="152" height="20"/>
 			<rect x="0" y="575.276" width="152" height="20" class="st13"/>
 			<text x="30.32" y="588.88" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>„Workout wählen“</text>		</g>
-		<g id="shape62-87" v:mID="62" v:groupContext="shape" transform="translate(467.717,-21.2598)">
+		<g id="shape62-57" v:mID="62" v:groupContext="shape" transform="translate(467.717,-21.2598)">
 			<title>Tabelle.62</title>
 			<desc>Alle Sprachbefehle, werden in vollständigen Sätzen erkannt.</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="166.394" cy="584.646" width="332.79" height="21.2598"/>
 			<rect x="0" y="574.016" width="332.787" height="21.2598" class="st13"/>
 			<text x="14.62" y="588.25" class="st14" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Alle Sprachbefehle, werden in vollständigen Sätzen erkannt.</text>		</g>
-		<g id="group67-90" transform="translate(228.514,-458.385)" v:mID="67" v:groupContext="group">
+		<g id="group67-60" transform="translate(318.905,-458.385)" v:mID="67" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<title>Zustand.67</title>
-			<g id="shape67-91" v:mID="67" v:groupContext="groupContent">
+			<g id="shape67-61" v:mID="67" v:groupContext="groupContent">
 				<rect x="0" y="529.251" width="159.3" height="66.0246" rx="8.50394" ry="8.50394" class="st3"/>
 			</g>
-			<g id="shape68-93" v:mID="68" v:groupContext="shape" transform="translate(0,-43.6209)">
+			<g id="shape68-63" v:mID="68" v:groupContext="shape" transform="translate(0,-43.6209)">
 				<title>Tabelle.68</title>
 				<desc>Art des Workouts</desc>
 				<v:userDefs>
@@ -257,7 +211,7 @@
 							 150.8 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 0 581.38 L0 586.77 A8.50394 8.50394 -180 0 0 8.5
 							 595.28 Z" class="st3"/>
 				<text x="36.43" y="587.67" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Art des Workouts</text>			</g>
-			<g id="shape69-96" v:mID="69" v:groupContext="shape">
+			<g id="shape69-66" v:mID="69" v:groupContext="shape">
 				<title>Tabelle.69</title>
 				<desc>Benutzerdefiniertes oder Alexas Minuten Workout?</desc>
 				<v:userDefs>
@@ -271,14 +225,14 @@
 				<text x="4" y="566.46" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>Benutzerdefiniertes oder <v:lf/><tspan
 							x="4" dy="1.2em" class="st7">Alexas Minuten Workout? </tspan> </text>			</g>
 		</g>
-		<g id="shape70-100" v:mID="70" v:groupContext="shape" v:layerMember="0" transform="translate(160.482,-458.385)">
+		<g id="shape70-70" v:mID="70" v:groupContext="shape" v:layerMember="0" transform="translate(119.055,-498.484)">
 			<title>Dynamischer Verbinder.70</title>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
 			</v:userDefs>
-			<path d="M0 595.28 L0 562.26 L61.87 562.26" class="st8"/>
+			<path d="M0 602.36 L36 602.36 L36 602.36 L193.69 602.36" class="st8"/>
 		</g>
-		<g id="shape71-105" v:mID="71" v:groupContext="shape" transform="translate(455.285,-474.389)">
+		<g id="shape71-75" v:mID="71" v:groupContext="shape" transform="translate(521.575,-474.389)">
 			<title>Auswahl.71</title>
 			<desc>&#34;Minuten Workout&#34;</desc>
 			<v:userDefs>
@@ -288,22 +242,22 @@
 			<v:textRect cx="17.0079" cy="606.477" width="105.94" height="22.4037"/>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
 			<text x="-30.46" y="610.08" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>&#34;Minuten Workout&#34;</text>		</g>
-		<g id="shape72-109" v:mID="72" v:groupContext="shape" v:layerMember="0" transform="translate(387.814,-484.311)">
+		<g id="shape72-79" v:mID="72" v:groupContext="shape" v:layerMember="0" transform="translate(478.205,-484.311)">
 			<title>Dynamischer Verbinder.72</title>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
 			</v:userDefs>
-			<path d="M0 588.19 L61.31 588.19" class="st8"/>
+			<path d="M0 588.19 L37.21 588.19" class="st8"/>
 		</g>
-		<g id="group82-114" transform="translate(598.96,-461.793)" v:mID="82" v:groupContext="group">
+		<g id="group82-84" transform="translate(598.96,-461.793)" v:mID="82" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<title>Zustand.82</title>
-			<g id="shape82-115" v:mID="82" v:groupContext="groupContent">
+			<g id="shape82-85" v:mID="82" v:groupContext="groupContent">
 				<rect x="0" y="536.068" width="160.525" height="59.2075" rx="8.50394" ry="8.50394" class="st3"/>
 			</g>
-			<g id="shape83-117" v:mID="83" v:groupContext="shape" transform="translate(0,-36.8038)">
+			<g id="shape83-87" v:mID="83" v:groupContext="shape" transform="translate(0,-36.8038)">
 				<title>Tabelle.83</title>
 				<desc>Körperbereich</desc>
 				<v:userDefs>
@@ -315,7 +269,7 @@
 							 0 0 152.02 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 0 581.38 L0 586.77 A8.50394 8.50394 -180 0 0
 							 8.5 595.28 Z" class="st3"/>
 				<text x="44.2" y="587.67" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Körperbereich</text>			</g>
-			<g id="shape84-120" v:mID="84" v:groupContext="shape">
+			<g id="shape84-90" v:mID="84" v:groupContext="shape">
 				<title>Tabelle.84</title>
 				<desc>Möchtest du einen bestimm- ten Körperbereich trainieren?</desc>
 				<v:userDefs>
@@ -329,11 +283,11 @@
 				<text x="4" y="573.27" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>Möchtest du einen bestimm- <tspan
 							x="4" dy="1.2em" class="st7">ten Körperbereich trainieren?</tspan></text>			</g>
 		</g>
-		<g id="shape85-124" v:mID="85" v:groupContext="shape" v:layerMember="0" transform="translate(489.301,-484.311)">
+		<g id="shape85-94" v:mID="85" v:groupContext="shape" v:layerMember="0" transform="translate(555.591,-484.311)">
 			<title>Dynamischer Verbinder.85</title>
-			<path d="M0 588.19 L103.5 588.19" class="st8"/>
+			<path d="M0 588.19 L37.21 588.19" class="st8"/>
 		</g>
-		<g id="shape87-129" v:mID="87" v:groupContext="shape" transform="translate(455.285,-368.374)">
+		<g id="shape87-99" v:mID="87" v:groupContext="shape" transform="translate(467.717,-368.374)">
 			<title>Auswahl.87</title>
 			<desc>&#34;Selbst erstelltes Workout&#34;</desc>
 			<v:userDefs>
@@ -343,38 +297,38 @@
 			<v:textRect cx="38.9984" cy="552.626" width="145.3" height="22.4037"/>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
 			<text x="-28.15" y="556.23" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>&#34;Selbst erstelltes Workout&#34;</text>		</g>
-		<g id="shape88-133" v:mID="88" v:groupContext="shape" v:layerMember="0" transform="translate(362.835,-458.385)">
+		<g id="shape88-103" v:mID="88" v:groupContext="shape" v:layerMember="0" transform="translate(398.555,-458.385)">
 			<title>Dynamischer Verbinder.88</title>
-			<path d="M0 595.28 L0 668.28 L86.29 668.28" class="st8"/>
+			<path d="M0 595.28 L0 668.28 L63 668.28" class="st8"/>
 		</g>
-		<g id="shape99-138" v:mID="99" v:groupContext="shape" v:layerMember="0" transform="translate(489.301,-385.381)">
+		<g id="shape99-108" v:mID="99" v:groupContext="shape" v:layerMember="0" transform="translate(501.732,-385.381)">
 			<title>Dynamischer Verbinder.99</title>
-			<path d="M0 595.28 L48.28 595.28 L48.28 913.23 L165.33 913.23" class="st8"/>
+			<path d="M0 595.28 L35.85 595.28 L35.85 913.23 L152.9 913.23" class="st8"/>
 		</g>
-		<g id="shape100-143" v:mID="100" v:groupContext="shape" transform="translate(598.96,-327.991)">
+		<g id="shape100-113" v:mID="100" v:groupContext="shape" transform="translate(598.96,-327.991)">
 			<title>Auswahl.100</title>
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
 		</g>
-		<g id="shape101-146" v:mID="101" v:groupContext="shape" v:layerMember="0" transform="translate(608.619,-461.793)">
+		<g id="shape101-116" v:mID="101" v:groupContext="shape" v:layerMember="0" transform="translate(608.881,-461.793)">
 			<title>Dynamischer Verbinder.101</title>
 			<desc>„Nein“</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-			<v:textRect cx="-17.8775" cy="694.229" width="60" height="22.4037"/>
-			<path d="M6.82 595.28 L7.32 688.9" class="st8"/>
-			<rect v:rectContext="textBkgnd" x="-34.3835" y="687.029" width="33.0123" height="14.4001" class="st15"/>
-			<text x="-34.38" y="697.83" class="st16" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>„Nein“</text>		</g>
-		<g id="group111-153" transform="translate(588.5,-186.579)" v:mID="111" v:groupContext="group">
+			<v:textRect cx="-18.1352" cy="694.096" width="60.01" height="22.4037"/>
+			<path d="M7.09 595.28 L7.09 688.9" class="st8"/>
+			<rect v:rectContext="textBkgnd" x="-34.6412" y="686.897" width="33.0123" height="14.4001" class="st15"/>
+			<text x="-34.64" y="697.7" class="st16" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>„Nein“</text>		</g>
+		<g id="group111-123" transform="translate(588.5,-186.579)" v:mID="111" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<title>Zustand.111</title>
-			<g id="shape111-154" v:mID="111" v:groupContext="groupContent">
+			<g id="shape111-124" v:mID="111" v:groupContext="groupContent">
 				<rect x="0" y="536.068" width="178.596" height="59.2075" rx="8.50394" ry="8.50394" class="st3"/>
 			</g>
-			<g id="shape112-156" v:mID="112" v:groupContext="shape" transform="translate(0,-36.8038)">
+			<g id="shape112-126" v:mID="112" v:groupContext="shape" transform="translate(0,-36.8038)">
 				<title>Tabelle.112</title>
 				<desc>Intensität</desc>
 				<v:userDefs>
@@ -386,7 +340,7 @@
 							 0 170.09 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 -0 581.38 L0 586.77 A8.50394 8.50394 -180 0 0
 							 8.5 595.28 Z" class="st3"/>
 				<text x="65.27" y="587.67" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Intensität</text>			</g>
-			<g id="shape113-159" v:mID="113" v:groupContext="shape">
+			<g id="shape113-129" v:mID="113" v:groupContext="shape">
 				<title>Tabelle.113</title>
 				<desc>Soll es ein leichtes, mittleres oder ein schweres Workout sein?</desc>
 				<v:userDefs>
@@ -400,11 +354,11 @@
 				<text x="4" y="573.27" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>Soll es ein leichtes, mittleres<v:lf/><tspan
 							x="4" dy="1.2em" class="st7">oder ein schweres Workout sein?</tspan></text>			</g>
 		</g>
-		<g id="shape115-163" v:mID="115" v:groupContext="shape" v:layerMember="0" transform="translate(608.881,-327.991)">
+		<g id="shape115-133" v:mID="115" v:groupContext="shape" v:layerMember="0" transform="translate(608.881,-327.991)">
 			<title>Dynamischer Verbinder.115</title>
 			<path d="M7.09 595.28 L7.09 671.32" class="st8"/>
 		</g>
-		<g id="shape117-168" v:mID="117" v:groupContext="shape" transform="translate(660.791,-115.303)">
+		<g id="shape117-138" v:mID="117" v:groupContext="shape" transform="translate(660.791,-115.303)">
 			<title>Auswahl.117</title>
 			<desc>&#34;${Schwierigkeit}&#34;</desc>
 			<v:userDefs>
@@ -414,15 +368,15 @@
 			<v:textRect cx="85.3621" cy="577.77" width="99.85" height="22.4037"/>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
 			<text x="40.94" y="581.37" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>&#34;${Schwierigkeit}&#34;</text>		</g>
-		<g id="shape119-172" v:mID="119" v:groupContext="shape" v:layerMember="0" transform="translate(670.712,-186.579)">
+		<g id="shape119-142" v:mID="119" v:groupContext="shape" v:layerMember="0" transform="translate(670.712,-186.579)">
 			<title>Dynamischer Verbinder.119</title>
 			<path d="M7.09 595.28 L7.09 626.38" class="st8"/>
 		</g>
-		<g id="shape120-177" v:mID="120" v:groupContext="shape" v:layerMember="0" transform="translate(670.712,-115.303)">
+		<g id="shape120-147" v:mID="120" v:groupContext="shape" v:layerMember="0" transform="translate(670.712,-115.303)">
 			<title>Dynamischer Verbinder.120</title>
 			<path d="M7.09 595.28 L7.09 621.4" class="st8"/>
 		</g>
-		<g id="shape122-182" v:mID="122" v:groupContext="shape" transform="translate(714.613,-403.109)">
+		<g id="shape122-152" v:mID="122" v:groupContext="shape" transform="translate(714.613,-403.109)">
 			<title>Auswahl.122</title>
 			<desc>„Ja“</desc>
 			<v:userDefs>
@@ -432,23 +386,23 @@
 			<v:textRect cx="44.073" cy="586.908" width="31.46" height="22.4037"/>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
 			<text x="33.85" y="590.51" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>„Ja“</text>		</g>
-		<g id="shape125-186" v:mID="125" v:groupContext="shape" v:layerMember="0" transform="translate(724.534,-461.793)">
+		<g id="shape125-156" v:mID="125" v:groupContext="shape" v:layerMember="0" transform="translate(724.534,-461.793)">
 			<title>Dynamischer Verbinder.125</title>
 			<path d="M7.09 595.28 L7.09 613.78" class="st8"/>
 		</g>
-		<g id="shape126-191" v:mID="126" v:groupContext="shape" v:layerMember="0" transform="translate(724.534,-403.109)">
+		<g id="shape126-161" v:mID="126" v:groupContext="shape" v:layerMember="0" transform="translate(724.534,-403.109)">
 			<title>Dynamischer Verbinder.126</title>
 			<path d="M7.09 595.28 L7.09 619.43" class="st8"/>
 		</g>
-		<g id="group130-196" transform="translate(646.624,-327.991)" v:mID="130" v:groupContext="group">
+		<g id="group130-166" transform="translate(646.624,-327.991)" v:mID="130" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 			</v:userDefs>
 			<title>Zustand.130</title>
-			<g id="shape130-197" v:mID="130" v:groupContext="groupContent">
+			<g id="shape130-167" v:mID="130" v:groupContext="groupContent">
 				<rect x="0" y="550.468" width="169.994" height="44.8074" rx="8.50394" ry="8.50394" class="st3"/>
 			</g>
-			<g id="shape131-199" v:mID="131" v:groupContext="shape" transform="translate(0,-22.4037)">
+			<g id="shape131-169" v:mID="131" v:groupContext="shape" transform="translate(0,-22.4037)">
 				<title>Tabelle.131</title>
 				<desc>Körperbereich detail.</desc>
 				<v:userDefs>
@@ -460,7 +414,7 @@
 							 0 0 161.49 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 -0 581.38 L0 586.77 A8.50394 8.50394 -180 0
 							 0 8.5 595.28 Z" class="st3"/>
 				<text x="38.91" y="589.23" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Körperbereich detail.</text>			</g>
-			<g id="shape132-202" v:mID="132" v:groupContext="shape">
+			<g id="shape132-172" v:mID="132" v:groupContext="shape">
 				<title>Tabelle.132</title>
 				<desc>Welche Körperbereiche genau?</desc>
 				<v:userDefs>
@@ -473,7 +427,7 @@
 							 0 8.5 595.28 Z" class="st5"/>
 				<text x="4" y="587.67" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>Welche Körperbereiche genau?</text>			</g>
 		</g>
-		<g id="shape136-205" v:mID="136" v:groupContext="shape" transform="translate(682.057,-268.464)">
+		<g id="shape136-175" v:mID="136" v:groupContext="shape" transform="translate(682.057,-268.464)">
 			<title>Auswahl.136</title>
 			<desc>„${Körperbereiche}“</desc>
 			<v:userDefs>
@@ -483,54 +437,99 @@
 			<v:textRect cx="85.9606" cy="576.874" width="115.23" height="36.8038"/>
 			<path d="M17.01 595.28 L34.02 578.27 L17.01 561.26 L0 578.27 L17.01 595.28 Z" class="st10"/>
 			<text x="34.96" y="573.27" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>„${Körperbereiche}“<v:newlineChar/></text>		</g>
-		<g id="shape142-209" v:mID="142" v:groupContext="shape" v:layerMember="0" transform="translate(691.978,-327.991)">
+		<g id="shape142-179" v:mID="142" v:groupContext="shape" v:layerMember="0" transform="translate(691.978,-327.991)">
 			<title>Dynamischer Verbinder.142</title>
 			<path d="M7.09 595.28 L7.09 614.63" class="st8"/>
 		</g>
-		<g id="shape143-214" v:mID="143" v:groupContext="shape" v:layerMember="0" transform="translate(691.978,-268.464)">
+		<g id="shape143-184" v:mID="143" v:groupContext="shape" v:layerMember="0" transform="translate(691.978,-268.464)">
 			<title>Dynamischer Verbinder.143</title>
 			<path d="M7.09 595.28 L7.09 611.79" class="st8"/>
 		</g>
-		<g id="shape144-219" v:mID="144" v:groupContext="shape" transform="translate(18,-538.583)">
+		<g id="shape144-189" v:mID="144" v:groupContext="shape" transform="translate(18,-538.583)">
 			<title>Tabelle.144</title>
 			<desc>Programmstart</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
 			<v:textRect cx="94.9606" cy="581.102" width="189.93" height="28.3465"/>
 			<rect x="0" y="566.929" width="189.921" height="28.3465" class="st13"/>
 			<text x="19.01" y="588.3" class="st17" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/><tspan class="st18">Programmstart</tspan></text>		</g>
-		<g id="group89-223" transform="translate(18,-392.377)" v:mID="89" v:groupContext="group">
+		<g id="shape145-193" v:mID="145" v:groupContext="shape" v:layerMember="0" transform="translate(183.116,-212.765)">
+			<title>Dynamischer Verbinder.145</title>
+			<path d="M0 588.19 L65.84 588.19" class="st8"/>
+		</g>
+		<g id="group146-198" transform="translate(20.979,-190.248)" v:mID="146" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
-				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Callout)"/>
-				<v:ud v:nameU="msvSDTargetIntersection" v:prompt=""/>
-				<v:ud v:nameU="msvSDCalloutNoHighlight" v:prompt="" v:val="VT0(0):5"/>
-				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT0(0):26"/>
-				<v:ud v:nameU="Side" v:prompt="" v:val="VT0(4):26"/>
-				<v:ud v:nameU="LeaderEnd" v:prompt="" v:val="VT7(PNT(6.25MM,-0.28346456692913)):40"/>
-				<v:ud v:nameU="WHBoxIntersection" v:prompt="" v:val="VT7(PNT(10.096153846154MM,0)):40"/>
-				<v:ud v:nameU="FoldSize" v:prompt="" v:val="VT0(0.11811023622047):24"/>
-				<v:ud v:nameU="msvSDTargetIntersection" v:prompt="" v:val="VT7(PNT(1.8071137527757,-0.22625462405663)):40"/>
-				<v:ud v:nameU="Side" v:prompt="" v:val="VT0(1):26"/>
-				<v:ud v:nameU="LeaderEnd" v:prompt="" v:val="VT7(PNT(1.8071137527757,-0.22625462405663)):40"/>
-				<v:ud v:nameU="WHBoxIntersection" v:prompt="" v:val="VT7(PNT(1.1521491951341,0)):40"/>
 			</v:userDefs>
-			<title>Hinweis</title>
-			<desc>Abfrage der Laune ?</desc>
-			<g id="shape89-224" v:mID="89" v:groupContext="groupContent">
-				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-				<v:textRect cx="41.4774" cy="576.142" width="82.96" height="36.8038"/>
-				<path d="M0 595.28 L82.95 595.28 L82.95 565.51 L74.45 557.01 L0 557.01 L0 595.28 Z" class="st19"/>
-				<path d="M82.95 595.28 L130.11 611.57" class="st20"/>
-				<path d="M0 595.28 L82.95 595.28 L82.95 565.51 L74.45 557.01 L0 557.01 L0 595.28" class="st20"/>
-				<text x="12.19" y="572.54" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Abfrage der <tspan
-							x="21.21" dy="1.2em" class="st7">Laune ?</tspan></text>			</g>
-			<g id="shape90-230" v:mID="90" v:groupContext="shape" transform="translate(74.4508,-29.7638)">
-				<title>Tabelle.90</title>
-				<v:userDefs>
-					<v:ud v:nameU="FoldSize" v:prompt="" v:val="VT0(0.11811023622047):24"/>
-				</v:userDefs>
-				<path d="M0 595.28 L8.5 595.28 L8.5 596.13 L8.5 595.28 L0 586.77 L-0.85 586.77 L0 586.77 L0 595.28 Z" class="st21"/>
+			<title>Zustand.146</title>
+			<g id="shape146-199" v:mID="146" v:groupContext="groupContent">
+				<rect x="0" y="536.068" width="162.137" height="59.2075" rx="8.50394" ry="8.50394" class="st3"/>
 			</g>
+			<g id="shape147-201" v:mID="147" v:groupContext="shape" transform="translate(0,-36.8038)">
+				<title>Tabelle.147</title>
+				<desc>Begrüßung &#38; Motivationfrage</desc>
+				<v:userDefs>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Title)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="81.0683" cy="584.074" width="162.14" height="22.4037"/>
+				<path d="M8.5 595.28 L153.63 595.28 A8.50394 8.50394 -180 0 0 162.14 586.77 L162.14 581.38 A8.50394 8.50394 -180
+							 0 0 153.63 572.87 L8.5 572.87 A8.50394 8.50394 -180 0 0 -0 581.38 L0 586.77 A8.50394 8.50394 -180 0
+							 0 8.5 595.28 Z" class="st3"/>
+				<text x="6.53" y="587.67" class="st4" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Begrüßung &#38; Motivationfrage</text>			</g>
+			<g id="shape148-204" v:mID="148" v:groupContext="shape">
+				<title>Tabelle.148</title>
+				<desc>Willkommen zu deinem Home Workout. Wie fühlst du dich?</desc>
+				<v:userDefs>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Body)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="81.0683" cy="576.874" width="162.14" height="36.8038"/>
+				<path d="M8.5 595.28 L153.63 595.28 A8.50394 8.50394 -180 0 0 162.14 586.77 L162.14 566.98 A8.50394 8.50394 -180
+							 0 0 153.63 558.47 L8.5 558.47 A8.50394 8.50394 -180 0 0 -0 566.98 L0 586.77 A8.50394 8.50394 -180 0
+							 0 8.5 595.28 Z" class="st5"/>
+				<text x="4" y="573.27" class="st6" v:langID="1031"><v:paragraph/><v:tabList/>Willkommen zu deinem Home<v:newlineChar/><tspan
+							x="4" dy="1.2em" class="st7">Workout.  Wie fühlst du dich?</tspan></text>			</g>
 		</g>
+		<g id="shape150-208" v:mID="150" v:groupContext="shape" v:layerMember="0" transform="translate(94.9606,-249.456)">
+			<title>Dynamischer Verbinder.150</title>
+			<path d="M7.09 595.28 L7.09 541.21" class="st8"/>
+		</g>
+		<g id="shape153-213" v:mID="153" v:groupContext="shape" transform="translate(331.654,-309.679)">
+			<title>Tabelle.153</title>
+			<desc>&#34;zufälliges Workout starten&#34;</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="48.189" cy="585.276" width="96.38" height="20"/>
+			<rect x="0" y="575.276" width="96.378" height="20" class="st13"/>
+			<text x="24.04" y="581.68" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>&#34;zufälliges <v:newlineChar/><v:paragraph
+						v:horizAlign="1"/><tspan x="5.58" dy="1.2em" class="st7">Workout starten&#34;</tspan></text>		</g>
+		<g id="shape161-217" v:mID="161" v:groupContext="shape" transform="translate(255.118,-77.0323)">
+			<title>Endzustand</title>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<path d="M30.61 578.27 A13.6063 13.6063 -180 1 0 3.4 578.27 A13.6063 13.6063 -180 1 0 30.61 578.27 Z" class="st19"/>
+			<path d="M34.02 578.27 A17.0079 17.0079 -180 1 0 0 578.27 A17.0079 17.0079 -180 1 0 34.02 578.27" class="st20"/>
+			<path d="M30.61 578.27 A13.6063 13.6063 -180 1 0 3.4 578.27 A13.6063 13.6063 -180 1 0 30.61 578.27" class="st20"/>
+		</g>
+		<g id="shape162-221" v:mID="162" v:groupContext="shape" v:layerMember="0" transform="translate(265.039,-202.844)">
+			<title>Dynamischer Verbinder.162</title>
+			<path d="M7.09 595.28 L7.09 673.12 L7.09 680.91" class="st8"/>
+		</g>
+		<g id="shape163-226" v:mID="163" v:groupContext="shape" v:layerMember="0" transform="translate(255.118,-86.9535)">
+			<title>Dynamischer Verbinder.163</title>
+			<path d="M0 588.19 L-129.03 588.19" class="st21"/>
+		</g>
+		<g id="shape164-232" v:mID="164" v:groupContext="shape" v:layerMember="0" transform="translate(296.22,-219.852)">
+			<title>Dynamischer Verbinder.164</title>
+			<path d="M-7.09 595.28 L95.41 595.28 L95.41 721.09 L-0.93 721.09" class="st8"/>
+		</g>
+		<g id="shape168-237" v:mID="168" v:groupContext="shape" transform="translate(297.638,-99.2126)">
+			<title>Tabelle.168</title>
+			<desc>&#34;Benutzer zurücksetzen&#34;</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="40.8189" cy="577.559" width="81.64" height="35.4331"/>
+			<rect x="0" y="559.843" width="81.6378" height="35.4331" class="st13"/>
+			<text x="16.19" y="573.96" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>&#34;Benutzer <tspan
+						x="5.44" dy="1.2em" class="st7">zurücksetzen&#34;</tspan></text>		</g>
 	</g>
 </svg>
