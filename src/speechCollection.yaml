@@ -1,0 +1,152 @@
+# Diese .yaml Datei ist eine Sammlung von Fragen und Sätzen, damit die Benutzung der App etwas natürlicher vorkommt.
+
+########### Pre Workout ###########
+greeting:
+  - Willkommen zu deinem Home Workout. Wie fühlst du dich heute?
+  - Hey! Gut, dass du ein Workout machen möchtest. Fühlst du dich motiviert?
+  - Hi, ich bin dein Trainer für Heute. Fühlst du dich fit?
+  - Schön, dass du dich für dein Home Workout entschieden hast. Darf ich dich fragen wie es dir geht?
+  - Hey, ich bin dein persönlicher Trainer und begleite dich bei deinem Home Workout. Zuerst würde ich gerne wissen, wie du dich fühlst.
+
+greeting_knwon:
+  - Schön dich wieder zu sehen! Dein Workout wartet bereits auf dich. Aber zuerst möchte ich dich fragen wie du dich fühlst.
+  - Willkommen zurück beim Home Workout. Wie geht es dir heute?
+  - Gut, dass du wieder da bist. Ich freue mich heute wieder dein Trainer zu sein. Wie fühlst du dich heute?
+
+choose_workout:
+  - Alles klar. Möchtest du ein bestimmtes Workout starten? Oder eins von mir machen?
+  - Dann lass uns loslegen. Welches Workout möchtest du denn machen, ein Alexa Workout oder ein anderes?
+  - Magst du ein Workout von mir oder ein benutzerdefiniertes Workout starten?
+  - Wie stellst du dir dein Workout heute vor, eins von mir oder ein Bestimmtes?
+  - Okay, möchtest du ein bestimmtes Workout durchziehen oder eins von meinen?
+  - Möchtest du ,dass ich dir ein Workout erstelle oder ein bestimmtes Workout?
+
+length_of_workout:
+  - Soll es ein 14 Minuten Workout werden oder ein 7 Minuten Workout?
+  - Wie lang soll das Workout werden? 7 oder 14 Minuten?
+  - Das Workout kann 14 oder 7 Minuten lang sein. Was wäre dir lieber?
+  - 7 oder 14 Minuten?
+  - Soll es ein kurzes oder ein langes Workout sein?
+
+type_user_workout_exist:
+  - Sollen wir eins von deinen Workouts machen?
+  - Ich kann eins von meinen Minuten Workouts machen oder eins von deinen. Was denkst du?
+  - Wir können dein erstelltes Workout machen oder eins von meinen. Was meinst du?
+  - Heute wieder eins von meinen Workouts oder ein von dir erstelltes?
+
+shall_we_train_specific:
+  - Magst du einen bestimmten Körperteil trainieren?
+  - Sollen wir dein Workout für ein Körperteil anpassen?
+  - Möchtest du ein bestimmten Körperbereich trainieren?
+
+body_part:
+  - Welchen Körperbereich möchtest du trainieren?
+  - Auf welchen Körperbereich sollen wir den Fokus legen?
+  - Welchen Körperbereich sollen wir heute intensiver trainieren?
+  - Welchen Teil möchtest du besonders trainieren?
+
+difficulty:
+  - Wie soll das Training gestaltet werden? Schwer, normal oder leicht?
+  - Soll ich das Workout schwer gestalten?
+  - Möchtest du ein leichtes, normales oder eher ein schweres Workout?
+  - Darf das Workout anstrengend sein?
+  - Wie schwierig darf das Workout sein? Leicht, normal oder schwer?
+
+########### During Workout ###########
+
+workout_begin_1:
+  - Dein Workout besteht aus # X Übungen
+  - Wir machen insgesamt # X Übungen
+  - Insgesamt machen wir # X Übungen
+  - Das Workout beinhaltet # X Übungen
+  - Dieses Workout besitzt # X Übungen
+
+workout_begin_2:
+  - Am Anfang kannst du immer zu einer Übung kurz nachfragen, falls du die Übung nicht kennst.
+  - Frage am Anfang einer Übung einfach kurz nach, falls du eine Übung nicht kennen solltest.
+  - Falls du eine Übung nicht kennst, frage einfach immer direkt nach ,bevor wir loslegen.
+  - Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
+
+first_workout:
+  - Die erste Übung ist # Übung XX
+  - Wir fangen an mit # Übung XX
+  - Los geht es mit # Übung XX
+  - Wir starten mit # Übung XX
+  - Als erstes ist dran # Übung XX
+  - Wir beginnen mit # Übung XX
+
+## Countdown wird wohl besser mit SSML gemacht.
+countdown_start:
+  - Es geht los in 3. 2. 1. Jetzt!
+  - Leg los in 3. 2. 1. Jetzt!
+  - Wir beginnen in 3. 2. 1. Los!
+
+## Countdown wird wohl besser mit SSML gemacht.
+countdown_end:
+  - Fertig.
+  - Und stopp!
+  - 3. 2. 1. Fertig.
+
+pause:
+  - Wir machen 30 Sekunden Pause.
+  - Ruhe dich kurz aus. Es geht gleich weiter.
+  - 30 Sekunden Pause um kurz was zu trinken.
+  - Kurze Verschnaufpause.
+  - Atme kurz durch es geht in 30 Sekunden weiter.
+
+next_workout:
+  - Als nächstes kommen
+  - Jetzt kommen
+  - Die nächste Übung ist
+  - Weiter gehts mit
+
+workout_done_1:
+  - Fertig! Wir sind für heute durch. Du hast nun # X Punkte dazubekommen.
+  - Sauber. Heute bist du mit den Training durch. Du hast nun # X Punkte dazubekommen.
+  - Wir sind fertig mit dem Workout. Du hast nun # X Punkte dazubekommen.
+  - Stark! Du hast das Workout geschafft. Dein Profil hat # X Punkte dazubekommen.
+
+workout_done_2:
+  - Um dein Training in Zukunft besser zu gestalten, können wir eine kurze Retro durchführen. Ist das okay?
+  - Möchtest du mit mir eine kurze Retro durchführen um dein Training in zukunft noch besser anzupassen?
+  - Wie wäre es mit einer kurzen Retrospektive um dein Training für die Zukunft besser zu gestalten? Hast du da Lust darauf?
+  - Ich würde dir gerne ein paar Fragen für die zukünfitgen Workouts stellen. Magst du mir ein Feedback geben?
+  - Wie wäre es mit einem Feedback? Darf ich dir dazu ein paar Fragen stellen?
+
+farewell:
+  - Okay, vielleicht beim nächsten Mal. Auf Wiedersehen!
+  - Auf Wiedersehen!
+  - Bis zum nächsten Mal! Tschüss.
+  - Wir sehen uns wieder beim nächsten Training.
+  - Dann bis zum nächsten Mal.
+
+########### Retrospective ###########
+
+overall:
+  - Wie fandest du das Training allgemein?
+  - Warst du im ganzen zufrieden mit dem Training?
+  - War das Training allgemein gut oder schlecht?
+  - Wie fandest du das Training insgesamt?
+
+specific_easy:
+  - Welche Übung fandest du besonders einfach?
+  - Welche Übung war dir zu einfach?
+  - Gab es eine Übung die dir zu einfach war? Wenn ja welche?
+  - Fandest du eine Übung zu einfach? Wenn ja, welche?
+
+specific_hard:
+  - Welche Übung fandest du besonders schwer?
+  - Welche Übung war dir zu schwer?
+  - Gab es eine Übung die dir zu schwer war? Wenn ja welche?
+  - Fandest du eine Übung zu schwer? Wenn ja, welche?
+
+day_time_training:
+  - Trainierst du lieber Abends oder Morgens?
+  - Welche Tageszeit zum Trainieren findest du angenehm? Morgen oder Abends?
+
+farewell_retro:
+  - Vielen Dank für dein Feeback. Auf Wiedersehen!
+  - Perfekt, das war alles. Dann sehen wir uns beim nächsten Training wieder.
+  - Danke für das Feedback. Bis zum nächsten Mal! Tschüss.
+  - Die Retro ist durch. Wir sehen uns wieder beim nächsten Training.
+  - Wir sind jetzt durch. Dann bis zum nächsten Mal. Bye.
