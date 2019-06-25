@@ -1,6 +1,11 @@
 #!/usr/bin/python
 from db_manager import DbManager
 import random
+import yaml
+import codecs
+import json
+from ibm_watson import LanguageTranslatorV3
+from ibm_watson import ToneAnalyzerV3 # pip install --upgrade "ibm-watson>=3.0.3"
 
 
 class WorkoutController:
@@ -10,6 +15,12 @@ class WorkoutController:
 
     def get_workout_by_name(self, name):
         return self.db.select_workout_by_name(name)
+
+    def check_if_user_existed(self,user_id):
+        if len(self.db.get_last_user_workouts(user_id)) > 0:
+            return True
+        else:
+            return False
 
     def get_workout_by_user(self, intensity, duration, body_part, user_id):
         """
@@ -106,3 +117,44 @@ class WorkoutController:
             calculated_intensity = 5
 
         return calculated_intensity
+
+    # chooses a random sentence from bunch of templates. State maps to the templates of the yaml
+    @staticmethod
+    def get_speech(state):
+
+        with codecs.open('speechCollection.yaml', 'r', encoding='utf-8') as stream:
+            doc = yaml.load(stream)
+            speech_list = doc[state]
+            random.shuffle(speech_list)
+            alexa_speaks = speech_list[0]
+
+        return alexa_speaks
+
+
+    @staticmethod
+    def get_emotions_of_text(untranslated_text):
+
+        language_translator = LanguageTranslatorV3(
+            version='2019-06-25',
+            iam_apikey='CK7wZg3en6KA8DbeS0gNWbougz9qHq9VeTfXn105nuK-',
+            url='https://gateway-fra.watsonplatform.net/language-translator/api'
+        )
+        translated_text = language_translator.translate(text=untranslated_text, model_id='de-en').get_result()
+        print(json.dumps(translated_text, indent=2, ensure_ascii=False)).encode('utf8')
+
+        tone_analyzer = ToneAnalyzerV3(
+            version='2019-06-25',
+            iam_apikey='oWwv8FrexMMLhvgv47RGei4aNvZvQGK7i1jmdsXZtnrm',
+            url='https://gateway-fra.watsonplatform.net/tone-analyzer/api',
+        )
+
+        translated_text = yaml.load(json.dumps(translated_text)) # decodes unicode dictionary. only cuz python2.7
+        translated_text = translated_text['translations'][0]['translation']
+
+        tone_analysis = tone_analyzer.tone(
+            {'text': translated_text},
+            content_type='application/json'
+        ).get_result()
+        print(json.dumps(tone_analysis, indent=2)).encode('utf8')
+
+

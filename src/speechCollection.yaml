@@ -3,18 +3,19 @@
 ########### Pre Workout ###########
 greeting:
   - Willkommen zu deinem Home Workout. Wie fühlst du dich heute?
-  - Hey! Gut, dass du ein Workout machen möchtest. Fühlst du dich motiviert?
+  - Hi! Gut dass du ein Workout machen möchtest. Fühlst du dich motiviert?
   - Hi, ich bin dein Trainer für Heute. Fühlst du dich fit?
-  - Schön, dass du dich für dein Home Workout entschieden hast. Darf ich dich fragen wie es dir geht?
-  - Hey, ich bin dein persönlicher Trainer und begleite dich bei deinem Home Workout. Zuerst würde ich gerne wissen, wie du dich fühlst.
+  - Gut dass du dich für dein Home Workout entschieden hast. Darf ich dich fragen wie es dir geht?
+  - Hi, ich bin dein persönlicher Trainer und begleite dich bei deinem Home Workout. Zuerst würde ich gerne wissen, wie du dich fühlst.
 
-greeting_knwon:
+greeting_known:
   - Schön dich wieder zu sehen! Dein Workout wartet bereits auf dich. Aber zuerst möchte ich dich fragen wie du dich fühlst.
   - Willkommen zurück beim Home Workout. Wie geht es dir heute?
   - Gut, dass du wieder da bist. Ich freue mich heute wieder dein Trainer zu sein. Wie fühlst du dich heute?
-
+  - Hi! Gut dass du ein Workout machen möchtest. Fühlst du dich motiviert?
+  -
 choose_workout:
-  - Alles klar. Möchtest du ein bestimmtes Workout starten? Oder eins von mir machen?
+  - Alles klar. Möchtest du ein bestimmtes Workout starten? Oder ein Alexa Workout?
   - Dann lass uns loslegen. Welches Workout möchtest du denn machen, ein Alexa Workout oder ein anderes?
   - Magst du ein Workout von mir oder ein benutzerdefiniertes Workout starten?
   - Wie stellst du dir dein Workout heute vor, eins von mir oder ein Bestimmtes?
