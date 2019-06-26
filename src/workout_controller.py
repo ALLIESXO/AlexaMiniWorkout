@@ -6,6 +6,7 @@ import codecs
 import json
 from ibm_watson import LanguageTranslatorV3
 from ibm_watson import ToneAnalyzerV3  # pip install --upgrade "ibm-watson>=3.0.3"
+from wit import Wit # pip install wit
 
 
 class WorkoutController:
@@ -131,7 +132,13 @@ class WorkoutController:
         return alexa_speaks
 
     @staticmethod
-    def get_emotions_of_text(untranslated_text):
+    def analyze_emotion_by_text(untranslated_text):
+        """
+        The function translates german text inside the ibm cloud and then sends them to the
+        ibm cloud watson emotion analyzer - after that the result is checked
+        :param untranslated_text: contains the german text recognised by alexa
+        :return: Number in range 1 to 5
+        """
 
         language_translator = LanguageTranslatorV3(
             version='2019-06-25',
@@ -155,10 +162,11 @@ class WorkoutController:
             content_type='application/json'
         ).get_result()
         print(json.dumps(tone_analysis, indent=2)).encode('utf8')
-        return WorkoutController.analyze_emotion(tone_analysis)
+
+        return WorkoutController._get_emotion_level_based_on_json(tone_analysis)
 
     @staticmethod
-    def analyze_emotion(tone_analysis):
+    def _get_emotion_level_based_on_json(tone_analysis):
         """
         Chooses the level of confidence (1-5) for the workout based on the emotions.
         :param tone_analysis: analysis of the emotion as json (dict)
@@ -217,7 +225,7 @@ class WorkoutController:
                 elif list_of_emotions[1][0] == 'Sadness':
                     return 1
                 elif list_of_emotions[1][0] == 'Analytical':
-                    return 3
+                    return 4
                 elif list_of_emotions[1][0] == 'Joy':
                     return 4
                 elif list_of_emotions[1][0] == 'Fear':
@@ -266,6 +274,54 @@ class WorkoutController:
                 return 3
 
     @staticmethod
-    def check_context_in_text(spoken_text):
-        pass # TODO: Implement this function
+    def check_context_in_text(spoken_text, list1, list2):
+        """
+        This is a fallback method if something wents wrong with wit.ai
+        Checks the context of the user, given to lists with possible answers which could be inside.
+        E.g. Alexa: "Which exercise do you want? A premade or a specifc?
+             User : "I would like to have ... uhm.. a specific one?
+             First list would be ["yours","alexa","premade"]
+             Second list would be ["mine","specific","not premade"]
+             The list with the most occurrences will be the context.
+        :param spoken_text: spoken words by user
+        :param list1: possible words which should occur in list
+        :param list2: possible words which should occur in list
+        :return: The list with the most occurrences (context).
+        """
 
+        context1 = 0
+        context2 = 0
+
+        if any(word in spoken_text for word in list1):
+            context1 = + 1
+
+        if any(word in spoken_text for word in list2):
+            context2 = + 2
+
+        print(context1)
+
+        if context1 > context2:
+            return list1
+        elif context2 > context1:
+            return list2
+        else:
+            return []
+
+    @staticmethod
+    def check_context_wit_ai(spoken_text):
+        """
+        Sends the spoken text to wit.ai and recognizes the context/intent of it and passes a json back.
+        :param spoken_text: german spoken text by the user
+        :return: context as string
+        """
+
+        client = Wit('NU6ZT7EUEYOM5NQQHMBHATZBSYZJRPX6')
+        response = client.message(spoken_text)
+        # return found intent
+        print response
+        try:
+            answer = response['entities'].keys()[0]
+        except IndexError:
+            return "not_found"
+
+        return answer

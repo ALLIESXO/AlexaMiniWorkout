@@ -13,27 +13,31 @@ greeting_known:
   - Willkommen zurück beim Home Workout. Wie geht es dir heute?
   - Gut, dass du wieder da bist. Ich freue mich heute wieder dein Trainer zu sein. Wie fühlst du dich heute?
   - Hi! Gut dass du ein Workout machen möchtest. Fühlst du dich motiviert?
-  -
+
 choose_workout:
+  - Magst du ein Workout selbst auswählen?
+  - Willst du dir ein Workout einrichten?
+  - Möchtest du ein Workout selbst auswählen?
+
+type_of_workout:
   - Alles klar. Möchtest du ein bestimmtes Workout starten? Oder ein Alexa Workout?
   - Dann lass uns loslegen. Welches Workout möchtest du denn machen, ein Alexa Workout oder ein anderes?
   - Magst du ein Workout von mir oder ein benutzerdefiniertes Workout starten?
   - Wie stellst du dir dein Workout heute vor, eins von mir oder ein Bestimmtes?
   - Okay, möchtest du ein bestimmtes Workout durchziehen oder eins von meinen?
-  - Möchtest du ,dass ich dir ein Workout erstelle oder ein bestimmtes Workout?
+  - Möchtest du ,dass ich dir ein Workout erstelle oder magst du ein bestimmtes Workout machen?
 
 length_of_workout:
   - Soll es ein 14 Minuten Workout werden oder ein 7 Minuten Workout?
   - Wie lang soll das Workout werden? 7 oder 14 Minuten?
+  - Willst du ein langes Workout machen oder ein kurzes?
   - Das Workout kann 14 oder 7 Minuten lang sein. Was wäre dir lieber?
   - 7 oder 14 Minuten?
   - Soll es ein kurzes oder ein langes Workout sein?
 
-type_user_workout_exist:
-  - Sollen wir eins von deinen Workouts machen?
-  - Ich kann eins von meinen Minuten Workouts machen oder eins von deinen. Was denkst du?
-  - Wir können dein erstelltes Workout machen oder eins von meinen. Was meinst du?
-  - Heute wieder eins von meinen Workouts oder ein von dir erstelltes?
+type_user_workout:
+  - Wie heißt dein gewolltes Workout?
+  - Sag mir mal den Namen vom deinem Workout.
 
 shall_we_train_specific:
   - Magst du einen bestimmten Körperteil trainieren?
@@ -48,12 +52,13 @@ body_part:
 
 difficulty:
   - Wie soll das Training gestaltet werden? Schwer, normal oder leicht?
-  - Soll ich das Workout schwer gestalten?
+  - Soll ich das Workout schwer, normal oder leicht gestalten?
   - Möchtest du ein leichtes, normales oder eher ein schweres Workout?
   - Darf das Workout anstrengend sein?
   - Wie schwierig darf das Workout sein? Leicht, normal oder schwer?
 
 ########### During Workout ###########
+
 
 workout_begin_1:
   - Dein Workout besteht aus # X Übungen
@@ -151,3 +156,6 @@ farewell_retro:
   - Danke für das Feedback. Bis zum nächsten Mal! Tschüss.
   - Die Retro ist durch. Wir sehen uns wieder beim nächsten Training.
   - Wir sind jetzt durch. Dann bis zum nächsten Mal. Bye.
+
+error:
+  - Ich fühle mich gerade nicht gut. Ich muss leider hier abbrechen.
