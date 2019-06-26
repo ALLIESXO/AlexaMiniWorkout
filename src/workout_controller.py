@@ -5,7 +5,7 @@ import yaml
 import codecs
 import json
 from ibm_watson import LanguageTranslatorV3
-from ibm_watson import ToneAnalyzerV3 # pip install --upgrade "ibm-watson>=3.0.3"
+from ibm_watson import ToneAnalyzerV3  # pip install --upgrade "ibm-watson>=3.0.3"
 
 
 class WorkoutController:
@@ -16,7 +16,7 @@ class WorkoutController:
     def get_workout_by_name(self, name):
         return self.db.select_workout_by_name(name)
 
-    def check_if_user_existed(self,user_id):
+    def check_if_user_existed(self, user_id):
         if len(self.db.get_last_user_workouts(user_id)) > 0:
             return True
         else:
@@ -80,7 +80,7 @@ class WorkoutController:
             last_intensity = last_user_workout['intensity_rating']
             last_fitness_rating = last_user_workout['daily_form']
 
-            new_workout_intensity = self.calculate_workout_intensity(last_workout['intensity'],last_intensity, todays_form, last_fitness_rating)
+            new_workout_intensity = self.calculate_workout_intensity(last_workout['intensity'], last_intensity, todays_form, last_fitness_rating)
 
             return new_workout_intensity
 
@@ -130,7 +130,6 @@ class WorkoutController:
 
         return alexa_speaks
 
-
     @staticmethod
     def get_emotions_of_text(untranslated_text):
 
@@ -148,7 +147,7 @@ class WorkoutController:
             url='https://gateway-fra.watsonplatform.net/tone-analyzer/api',
         )
 
-        translated_text = yaml.load(json.dumps(translated_text)) # decodes unicode dictionary. only cuz python2.7
+        translated_text = yaml.load(json.dumps(translated_text))  # decodes unicode dictionary. only cuz python2.7
         translated_text = translated_text['translations'][0]['translation']
 
         tone_analysis = tone_analyzer.tone(
@@ -156,5 +155,117 @@ class WorkoutController:
             content_type='application/json'
         ).get_result()
         print(json.dumps(tone_analysis, indent=2)).encode('utf8')
+        return WorkoutController.analyze_emotion(tone_analysis)
 
+    @staticmethod
+    def analyze_emotion(tone_analysis):
+        """
+        Chooses the level of confidence (1-5) for the workout based on the emotions.
+        :param tone_analysis: analysis of the emotion as json (dict)
+        :return:
+        """
+
+        # if the analyzer could not figure it out map to normal mood
+        emotion_dict = tone_analysis["document_tone"]["tones"]
+        if len(emotion_dict) < 1:
+            return 3
+        # when there is only one emotion recognized
+        elif len(emotion_dict) < 2:
+            if emotion_dict[0]['tone_name'] == 'Joy':
+                return 5
+
+            elif emotion_dict[0]['tone_name'] == 'Anger':
+                return 4
+
+            elif emotion_dict[0]['tone_name'] == 'Confident':
+                if emotion_dict[0]['score'] > 0.9:
+                    return 4
+                else:
+                    return 3
+
+            elif emotion_dict[0]['tone_name'] == 'Sadness':
+                return 1
+
+            elif emotion_dict[0]['tone_name'] == 'Tentative':
+                return 3
+
+            elif emotion_dict[0]['tone_name'] == 'Analytical':
+                return 2
+
+            else:
+                return 3
+
+        # there are more than two emotion recognised
+        else:
+            # find the two most highest emotions
+            list_of_emotions = []
+            for emotion in emotion_dict:
+                list_of_emotions.append((emotion['tone_name'], emotion['score']))
+            list_of_emotions.sort(key=lambda x: x[1], reverse=True)
+            print(list_of_emotions)
+
+            if list_of_emotions[0][0] == 'Joy':
+                return 5
+
+            elif list_of_emotions[0][0] == 'Anger':
+                return 4
+
+            elif list_of_emotions[0][0] == 'Confident':
+
+                if list_of_emotions[1][0] == 'Anger':
+                    return 4
+                elif list_of_emotions[1][0] == 'Sadness':
+                    return 1
+                elif list_of_emotions[1][0] == 'Analytical':
+                    return 3
+                elif list_of_emotions[1][0] == 'Joy':
+                    return 4
+                elif list_of_emotions[1][0] == 'Fear':
+                    return 2
+                elif list_of_emotions[1][0] == 'Tentative':
+                    return 3
+                else:
+                    return 3
+
+            elif list_of_emotions[0][0] == 'Sadness':
+
+                if list_of_emotions[1][0] == 'Joy':
+                    return 2
+                elif list_of_emotions[1][0] == 'Anger':
+                    return 3
+                elif list_of_emotions[1][0] == 'Confident':
+                    return 2
+                else:
+                    return 1
+
+            elif list_of_emotions[0][0] == 'Tentative':
+                if list_of_emotions[1][0] == 'Joy':
+                    return 4
+                elif list_of_emotions[1][0] == 'Analytical':
+                    return 3
+                elif list_of_emotions[1][0] == 'Sadness':
+                    return 2
+                elif list_of_emotions[1][0] == 'Fear':
+                    return 2
+                else:
+                    return 3
+
+            elif list_of_emotions[0][0] == 'Analytical':
+                if list_of_emotions[1][0] == 'Joy':
+                    return 4
+                elif list_of_emotions[1][0] == 'Sadness':
+                    return 2
+                elif list_of_emotions[1][0] == 'Fear':
+                    return 2
+                elif list_of_emotions[1][0] == 'Confident':
+                    return 4
+                else:
+                    return 3
+
+            else:
+                return 3
+
+    @staticmethod
+    def check_context_in_text(spoken_text):
+        pass # TODO: Implement this function
 
