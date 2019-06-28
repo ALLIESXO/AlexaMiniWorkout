@@ -5,11 +5,11 @@ ssm_test:
   - <speak> Es geht los <prosody rate="x-slow"> in <break time="1s"/> 3 <break time="1s"/> 2 <break time="1s"/> 1 <break time="0.5s"/> </prosody> Go! <break time="3s"/> Fertig! Kurze Pause.  </speak>
 
 greeting:
-  - Willkommen zu deinem Home Workout. Wie fühlst du dich heute?
-  - Hi! Gut dass du ein Workout machen möchtest. Fühlst du dich motiviert?
-  - Hi, ich bin dein Trainer für Heute. Fühlst du dich fit?
-  - Gut dass du dich für dein Home Workout entschieden hast. Darf ich dich fragen wie es dir geht?
-  - Hi, ich bin dein persönlicher Trainer und begleite dich bei deinem Home Workout. Zuerst würde ich gerne wissen, wie du dich fühlst.
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Willkommen </say-as> zu deinem Home Workout. Wie fühlst du dich heute?  </lang> </speak>
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection">Moin! </say-as> Mich freut es ,dass du ein Workout machen möchtest. Fühlst du dich motiviert? </lang>  </speak>
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Hey </say-as>, ich bin dein Trainer für Heute. Fühlst du dich fit? </lang>  </speak>
+  - <speak>  <lang xml:lang="de-DE"> Gut, dass du dich für dein Home Workout entschieden hast. Darf ich dich fragen wie es dir geht?  </lang>  </speak>
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Hey </say-as>, ich bin dein persönlicher Trainer und begleite dich bei deinem Home Workout. Zuerst würde ich gerne wissen, wie du dich fühlst. </lang>  </speak>
 
 greeting_known:
   - Schön dich wieder zu sehen! Dein Workout wartet bereits auf dich. Aber zuerst möchte ich dich fragen wie du dich fühlst.

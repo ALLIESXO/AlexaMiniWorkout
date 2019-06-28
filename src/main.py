@@ -150,8 +150,8 @@ def workout_begin():
     session.attributes['workout_body_part'] = workout
 
     if workout is []:
-        session.attributes['state'] = 'choose_workout'
-        return question("Sorry aber ich habe keine Workouts auf Lager die gerade passen.")
+        session.attributes['state'] = 'error'
+        return statement("Sorry aber ich habe keine Workouts auf Lager die gerade passen.")
 
     else:
         speech = WorkoutController.get_speech('workout_begin_1') \

@@ -127,8 +127,10 @@ class WorkoutController:
         with codecs.open('speechCollection.yaml', 'r', encoding='utf-8') as stream:
             doc = yaml.load(stream)
             speech_list = doc[state]
+
             random.shuffle(speech_list)
             alexa_speaks = speech_list[0]
+            alexa_speaks = alexa_speaks.encode('utf-8')
 
         return alexa_speaks
 
