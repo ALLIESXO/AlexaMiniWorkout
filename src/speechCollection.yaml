@@ -1,6 +1,9 @@
 # Diese .yaml Datei ist eine Sammlung von Fragen und Sätzen, damit die Benutzung der App etwas natürlicher vorkommt.
 
 ########### Pre Workout ###########
+ssm_test:
+  - <speak> Es geht los <prosody rate="x-slow"> in <break time="1s"/> 3 <break time="1s"/> 2 <break time="1s"/> 1 <break time="0.5s"/> </prosody> Go! <break time="3s"/> Fertig! Kurze Pause.  </speak>
+
 greeting:
   - Willkommen zu deinem Home Workout. Wie fühlst du dich heute?
   - Hi! Gut dass du ein Workout machen möchtest. Fühlst du dich motiviert?
@@ -61,17 +64,17 @@ difficulty:
 
 
 workout_begin_1:
-  - Dein Workout besteht aus # X Übungen
-  - Wir machen insgesamt # X Übungen
-  - Insgesamt machen wir # X Übungen
-  - Das Workout beinhaltet # X Übungen
-  - Dieses Workout besitzt # X Übungen
+  - Dein Workout besteht aus  # X Übungen.
+  - Wir machen insgesamt  # X Übungen
+  - Insgesamt machen wir  # X Übungen
+  - Das Workout beinhaltet  # X Übungen
+  - Dieses Workout besitzt  # X Übungen
 
 workout_begin_2:
-  - Am Anfang kannst du immer zu einer Übung kurz nachfragen, falls du die Übung nicht kennst.
-  - Frage am Anfang einer Übung einfach kurz nach, falls du eine Übung nicht kennen solltest.
-  - Falls du eine Übung nicht kennst, frage einfach immer direkt nach ,bevor wir loslegen.
-  - Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
+  -  Übungen. Am Anfang kannst du immer zu einer Übung kurz nachfragen, falls du die Übung nicht kennst.
+  -  Übungen. Frage am Anfang einer Übung einfach kurz nach, falls du eine Übung nicht kennen solltest.
+  -  Übungen. Falls du eine Übung nicht kennst, frage einfach immer direkt nach, bevor wir loslegen.
+  -  Übungen. Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
 
 first_workout:
   - Die erste Übung ist # Übung XX
@@ -83,15 +86,8 @@ first_workout:
 
 ## Countdown wird wohl besser mit SSML gemacht.
 countdown_start:
-  - Es geht los in 3. 2. 1. Jetzt!
-  - Leg los in 3. 2. 1. Jetzt!
-  - Wir beginnen in 3. 2. 1. Los!
-
-## Countdown wird wohl besser mit SSML gemacht.
-countdown_end:
-  - Fertig.
-  - Und stopp!
-  - 3. 2. 1. Fertig.
+  - <speak> Es geht los <prosody rate="x-slow"> in <break time="1s"/> 3 <break time="1s"/> 2 <break time="1s"/> 1 <break time="0.5s"/> </prosody> Go! <break time="30s"/> Fertig! Kurze Pause.  </speak>
+  - <speak> Wir beginnen <prosody rate="x-slow"> in <break time="1s"/> 3 <break time="1s"/> 2 <break time="1s"/> 1 <break time="0.5s"/> </prosody> Start! <break time="30s"/> Stopp. Gleich machen wir weiter.  </speak>
 
 pause:
   - Wir machen 30 Sekunden Pause.

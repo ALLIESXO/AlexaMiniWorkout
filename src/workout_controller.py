@@ -17,10 +17,11 @@ class WorkoutController:
     def get_workout_by_name(self, name):
         return self.db.select_workout_by_name(name)
 
-    def check_if_user_existed(self, user_id):
+    def check_if_user_exist(self, user_id):
         if len(self.db.get_last_user_workouts(user_id)) > 0:
             return True
         else:
+            # TODO: Save user in DB
             return False
 
     def get_workout_by_user(self, intensity, duration, body_part, user_id):

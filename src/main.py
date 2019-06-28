@@ -18,9 +18,9 @@ def launched():
     session.attributes['quickstart'] = 0
     session.attributes['workout_length'] = 7
     session.attributes['workout_body_part'] = ""
-    session.attributes['workout_intensity'] = "normal"
+    session.attributes['workout_intensity'] = 2 # TODO: What is the standard value ?
 
-    if wc.check_if_user_existed(user_id=context.System.user['userId']) is True:
+    if wc.check_if_user_exist(user_id=context.System.user['userId']) is True:
         print str(context.System.user['userId'])
         session.attributes['state'] = 'greeting_known'
         return question(WorkoutController.get_speech(session.attributes['state']))
@@ -113,14 +113,18 @@ def DelegateIntent():
     elif state == 'difficulty':
 
         if 'leicht' in spoken_text:
-            session.attributes['workout_intensity'] = "leicht"
+            session.attributes['workout_intensity'] = 1
         elif 'schwer' in spoken_text:
-            session.attributes['workout_intensity'] = "schwer"
+            session.attributes['workout_intensity'] = 3
 
         session.attributes['state'] = 'workout_begin'
-        # return question(workout_begin())
-        # TODO: Remove this statement
-        return statement("Mehr kann ich grade nicht mehr fragen :D")
+        return question(workout_begin())
+
+
+# ####### Starting Workout #########
+
+    elif state == 'first_workout':
+        pass
 
     else:
         return statement(WorkoutController.get_speech('error'))
@@ -129,11 +133,32 @@ def DelegateIntent():
 def workout_begin():
     """
     Chooses the workout based on all information given and then creates the correct string
-    "Dein Workout besteht aus (yaml part1)"+ "10 Uebungen" + "Am Anfang kannst du immer zu einer Uebung fragen ..."
+    "Dein Workout besteht aus (yaml part1) " + "10 Uebungen" + "Am Anfang kannst du immer zu einer Uebung fragen ..."
     :return: String with correct number of workout exercises
     """
+    # TODO: intensity is only mapped to have a value 1,2,3. Inside DB it should be 1,2,3,4,5
+    intensity = session.attributes['workout_body_part']
+    duration = session.attributes['workout_length']
+    body_part = session.attributes['workout_body_part']
 
-    return None
+    workout = wc.get_workout_by_user(
+        intensity=intensity,
+        duration=duration,
+        body_part=body_part,
+        user_id=context.System.user['userId']
+    )
+    session.attributes['workout_body_part'] = workout
+
+    if workout is []:
+        session.attributes['state'] = 'choose_workout'
+        return question("Sorry aber ich habe keine Workouts auf Lager die gerade passen.")
+
+    else:
+        speech = WorkoutController.get_speech('workout_begin_1') \
+                 + ' ' + str(len(workout['exercises'])) + ' ' \
+                 + WorkoutController.get_speech('workout_begin_2')
+        session.attributes['state'] = 'first_workout'
+        return question(speech)
 
 
 if __name__ == '__main__':
