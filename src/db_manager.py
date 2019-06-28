@@ -4,7 +4,7 @@ from sqlite3 import Error
 
 class DbManager:
 
-    def create_connection(self,db_file):
+    def create_connection(self, db_file):
         """ create a database connection to the SQLite database
             specified by the db_file
         :param db_file: database file
@@ -41,19 +41,19 @@ class DbManager:
         with conn:
             cur = conn.cursor()
             result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                        "JOIN workout_exercises as we ON w.id = we.workout_id "
-                        "JOIN exercises as ex ON we.exercise_id = ex.id "
-                        "WHERE w.name like ?", (name,))
+                                 "JOIN workout_exercises as we ON w.id = we.workout_id "
+                                 "JOIN exercises as ex ON we.exercise_id = ex.id "
+                                 "WHERE w.name like ?", (name,))
 
             exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
             cur = conn.cursor()
             result = cur.execute("SELECT * FROM workouts as w "
-                        "WHERE w.name like ?", (name,))
+                                 "WHERE w.name like ?", (name,))
 
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            workout = {"workout": workouts,"exercises":exercises}
+            workout = {"workout": workouts, "exercises": exercises}
 
             return workout
 
@@ -68,19 +68,19 @@ class DbManager:
         with conn:
             cur = conn.cursor()
             result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                        "JOIN workout_exercises as we ON w.id = we.workout_id "
-                        "JOIN exercises as ex ON we.exercise_id = ex.id "
-                        "WHERE w.id like ?", (id,))
+                                 "JOIN workout_exercises as we ON w.id = we.workout_id "
+                                 "JOIN exercises as ex ON we.exercise_id = ex.id "
+                                 "WHERE w.id like ?", (id,))
 
             exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
             cur = conn.cursor()
             result = cur.execute("SELECT * FROM workouts as w "
-                        "WHERE w.id like ?", (id,))
+                                 "WHERE w.id like ?", (id,))
 
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            workout = {"workout": workouts,"exercises":exercises}
+            workout = {"workout": workouts, "exercises": exercises}
 
             return workout
 
@@ -97,15 +97,16 @@ class DbManager:
         with conn:
             cur = conn.cursor()
             result = cur.execute("SELECT * from workouts as w WHERE w.intensity = ? AND w.body_part = ?",
-                        (intensity, body_part))
+                                 (intensity, body_part))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
             for row in workouts:
                 cur = conn.cursor()
-                result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                            "JOIN workout_exercises as we ON w.id = we.workout_id "
-                            "JOIN exercises as ex ON we.exercise_id = ex.id "
-                            "WHERE w.id = ?", (row['id'],))
+                result = cur.execute(
+                    "SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
+                    "JOIN workout_exercises as we ON w.id = we.workout_id "
+                    "JOIN exercises as ex ON we.exercise_id = ex.id "
+                    "WHERE w.id = ?", (row['id'],))
                 exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
                 workout = {"workout": row, "exercises": exercises}
                 workouts_to_return.append(workout)
@@ -125,15 +126,18 @@ class DbManager:
 
         with conn:
             cur = conn.cursor()
-            result = cur.execute("SELECT * from workouts as w WHERE w.intensity = ? AND w.duration = ? AND w.body_part = ?", (intensity,duration,body_part))
+            result = cur.execute(
+                "SELECT * from workouts as w WHERE w.intensity = ? AND w.duration = ? AND w.body_part = ?",
+                (intensity, duration, body_part))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
             for row in workouts:
                 cur = conn.cursor()
-                result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                            "JOIN workout_exercises as we ON w.id = we.workout_id "
-                            "JOIN exercises as ex ON we.exercise_id = ex.id "
-                            "WHERE w.id = ?", (row['id'],))
+                result = cur.execute(
+                    "SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
+                    "JOIN workout_exercises as we ON w.id = we.workout_id "
+                    "JOIN exercises as ex ON we.exercise_id = ex.id "
+                    "WHERE w.id = ?", (row['id'],))
                 exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
                 workout = {"workout": row, "exercises": exercises}
                 workouts_to_return.append(workout)
@@ -151,8 +155,8 @@ class DbManager:
 
         with conn:
             cur = conn.cursor()
-            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? ",
-                        (user_id,))
+            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? order by uw.id desc",
+                                 (user_id,))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
         if workouts.__len__() > 0:
@@ -171,14 +175,34 @@ class DbManager:
 
         with conn:
             cur = conn.cursor()
-            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? ",
-                        (user_id,))
+            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? order by uw.id desc",
+                                 (user_id,))
 
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
         if workouts.__len__() > 0:
 
-
             return workouts
+        else:
+            return []
+
+    def get_user_fitness_ratings_array(self, user_id):
+        """
+        Returns all done workouts of a user by its id
+        :param user_id:
+        :return:
+        """
+
+        conn = self.get_connection()
+
+        with conn:
+            cur = conn.cursor()
+            result = cur.execute("SELECT daily_form from user_workouts as uw WHERE uw.user_id = ? ",
+                                 (user_id,))
+
+            ratings = result.fetchall()
+
+        if ratings.__len__() > 0:
+            return ratings
         else:
             return []

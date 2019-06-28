@@ -4,9 +4,12 @@ import random
 import yaml
 import codecs
 import json
+import numpy
+import pendulum
+import random
 from ibm_watson import LanguageTranslatorV3
 from ibm_watson import ToneAnalyzerV3  # pip install --upgrade "ibm-watson>=3.0.3"
-from wit import Wit # pip install wit
+from wit import Wit  # pip install wit
 
 
 class WorkoutController:
@@ -70,20 +73,50 @@ class WorkoutController:
         - The overall development of the user
         :return: the workout selected
         """
-        last_workouts = self.db.get_last_user_workouts(user_id)
+        last_user_workout = self.db.get_last_user_workout(user_id)
 
-        if last_workouts.__len__() > 0:
+        if last_user_workout:
             """
             Calculate best workout
             """
-            last_user_workout = last_workouts[0]
-            last_workout = self.db.select_workout_by_id(last_user_workout['workout_id'])['workout'][0]
-            last_intensity = last_user_workout['intensity_rating']
-            last_fitness_rating = last_user_workout['daily_form']
+            low_duration = 7
+            high_duration = 14
 
-            new_workout_intensity = self.calculate_workout_intensity(last_workout['intensity'], last_intensity, todays_form, last_fitness_rating)
+            selected_intensity = 0
+            selected_duration = 7
+            selected_body_part = 0
 
-            return new_workout_intensity
+            last_workout_data = self.db.select_workout_by_id(last_user_workout['workout_id'])['workout'][0]
+            last_rated_intensity = last_user_workout['intensity_rating']
+            last_workout_total_intensity = last_workout_data['intensity']
+            last_workout_duration = last_workout_data['duration']
+
+            new_workout_intensity = self.calculate_workout_intensity(user_id, last_workout_total_intensity,
+                                                                     last_rated_intensity, todays_form)
+
+            new_workout_body_part = self.calculate_workout_body_part(user_id)
+
+            print("body_part: ", new_workout_body_part)
+
+            # define intensity and duration by calculated intensity
+
+            if last_workout_total_intensity < new_workout_intensity and last_workout_duration == low_duration:
+                selected_intensity = last_workout_total_intensity
+                selected_duration = high_duration
+
+            if last_workout_total_intensity < new_workout_intensity and last_workout_duration == high_duration:
+                selected_intensity = new_workout_intensity
+                selected_duration = low_duration
+
+            if last_workout_total_intensity > new_workout_intensity and last_workout_duration == high_duration:
+                selected_intensity = last_workout_total_intensity
+                selected_duration = low_duration
+
+            if last_workout_total_intensity < new_workout_intensity and last_workout_duration == low_duration:
+                selected_intensity = new_workout_intensity
+                selected_duration = high_duration
+
+            return selected_intensity
 
         else:
             """
@@ -96,28 +129,103 @@ class WorkoutController:
             else:
                 return []
 
-    def calculate_workout_intensity(self, last_workout_intensity, last_workout_intensity_rating, todays_form,
-                                    last_workout_form):
+    def calculate_workout_body_part(self, user_id):
+        last_user_workouts = self.db.get_last_user_workouts(user_id)
+
+        if last_user_workouts.__len__() > 1:
+            recent_workout = last_user_workouts[0]
+            previous_workout = last_user_workouts[1]
+
+            today = pendulum.now()
+            week_start = today.start_of('week')
+
+            tz = pendulum.timezone('Europe/Paris')
+            previous_workout_date = pendulum.from_timestamp(previous_workout["date"] / 1000)
+            previous_workout_date = tz.convert(previous_workout_date)
+
+            if week_start <= previous_workout_date:
+                recent_workout_body_part = self.db.select_workout_by_id(recent_workout['workout_id'])['workout'][0][
+                    "body_part"]
+                previous_workout_body_part = self.db.select_workout_by_id(previous_workout['workout_id'])['workout'][0][
+                    "body_part"]
+
+                body_parts_array = [0, 1, 2, 3]
+
+                body_parts_array = numpy.where(body_parts_array != numpy.intersect1d(body_parts_array,
+                                                                                     [recent_workout_body_part])[0])
+
+                body_parts_array = numpy.where(body_parts_array != numpy.intersect1d(body_parts_array,
+                                                                                     [previous_workout_body_part])[0])
+
+                if body_parts_array.__len__() == 3:
+                    return random.choice(body_parts_array)
+
+                if body_parts_array.__len__() == 2:
+
+                    if recent_workout_body_part != 0 and previous_workout_body_part != 0:
+                        return numpy.where(body_parts_array != 0)[0]
+
+                    else:
+                        return random.choice(body_parts_array)
+            else:
+                return 0
+        else:
+            return 0
+
+    def calculate_workout_intensity(self, user_id, last_workout_total_intensity, last_workout_intensity_rating,
+                                    todays_form, ):
         """
         Based on the given parameters, this function calculates the intensity of the next workout to select
-        :param last_workout_intensity:
+        :param user_id
+        :param last_workout_total_intensity:
         :param last_workout_intensity_rating:
         :param todays_form:
-        :param last_workout_form:
         :return:
         """
+        fitness_median = self.calculate_fitness_median(user_id)
+        last_intense_delta = last_workout_total_intensity - last_workout_intensity_rating
+        form_delta = todays_form - fitness_median
 
-        intensity_result = last_workout_intensity - last_workout_intensity_rating
-        form_result = todays_form - last_workout_form
+        print("median: ", fitness_median)
+        print("aktuelle form: ", todays_form)
+        print("intense delta: ", last_intense_delta)
+        print("form delta: ", form_delta)
 
-        calculated_intensity = 3 + intensity_result + form_result
+        if -2 < last_intense_delta < 2:
+            if -2 < form_delta < 2:
+                if last_intense_delta == -1:
+                    if form_delta > 0:
+                        return last_workout_total_intensity
+                    else:
+                        return last_workout_total_intensity - 1
+                if last_intense_delta == 0:
+                    return last_workout_total_intensity
+                if last_intense_delta == 1:
+                    if form_delta < 0:
+                        return last_workout_total_intensity
+                    else:
+                        return last_workout_total_intensity + 1
+            if form_delta < -1:
+                return last_workout_total_intensity - 1
+            if form_delta > 1:
+                return last_workout_total_intensity + 1
+        else:
+            if last_intense_delta < -1:
+                return last_workout_total_intensity - 1
+            if last_intense_delta > 1:
+                return last_workout_total_intensity + 1
 
-        if calculated_intensity < 1:
-            calculated_intensity = 1
-        if calculated_intensity > 5:
-            calculated_intensity = 5
+    def calculate_fitness_median(self, user_id):
+        """
+        Calculates the median of the last fitness forms of the user
+        :return:
+        """
+        fitness_array = self.db.get_user_fitness_ratings_array(user_id)
 
-        return calculated_intensity
+        if fitness_array:
+            return numpy.round(numpy.median(fitness_array))
+
+        return 0
 
     # chooses a random sentence from bunch of templates. State maps to the templates of the yaml
     @staticmethod
