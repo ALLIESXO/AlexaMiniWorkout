@@ -35,11 +35,11 @@ class WorkoutController:
         :param user_id:
         :return:
         """
-        workouts = self.db.select_workouts_by_user_parameters(intensity, duration, body_part)
+        workouts = self.db.select_workouts_by_user_parameters(intensity)
 
         if workouts.__len__() == 0:
             'There is no such workout'
-            return -1
+            return []
 
         if workouts.__len__() > 1:
             'Select a workout at random taking the last done workout into account'
@@ -48,9 +48,12 @@ class WorkoutController:
             if last_user_workout != -1:
 
                 for workout in workouts:
-                    if workout[0] == last_user_workout[0]:
+                    if workout["workout"]["id"] == last_user_workout["id"]:
                         workouts.remove(workout)
                         break
+
+            # TODO filter remaining workouts by duration and body part
+            #  implement fallback options if no adequate workout is found
 
             random.shuffle(workouts)
             return workouts[0]
@@ -82,9 +85,7 @@ class WorkoutController:
             low_duration = 7
             high_duration = 14
 
-            selected_intensity = 0
             selected_duration = 7
-            selected_body_part = 0
 
             last_workout_data = self.db.select_workout_by_id(last_user_workout['workout_id'])['workout'][0]
             last_rated_intensity = last_user_workout['intensity_rating']
@@ -94,12 +95,11 @@ class WorkoutController:
             new_workout_intensity = self.calculate_workout_intensity(user_id, last_workout_total_intensity,
                                                                      last_rated_intensity, todays_form)
 
-            new_workout_body_part = self.calculate_workout_body_part(user_id)
+            selected_intensity = new_workout_intensity
 
-            print("body_part: ", new_workout_body_part)
+            selected_body_part = self.calculate_workout_body_part(user_id)
 
             # define intensity and duration by calculated intensity
-
             if last_workout_total_intensity < new_workout_intensity and last_workout_duration == low_duration:
                 selected_intensity = last_workout_total_intensity
                 selected_duration = high_duration
@@ -116,7 +116,11 @@ class WorkoutController:
                 selected_intensity = new_workout_intensity
                 selected_duration = high_duration
 
-            return selected_intensity
+            print("duration: ", selected_duration)
+            print("intensity: ", selected_intensity)
+            print("body part: ", selected_body_part)
+
+            return self.get_workout_by_user(selected_intensity, selected_duration, selected_body_part, user_id)
 
         else:
             """
@@ -149,22 +153,18 @@ class WorkoutController:
                 previous_workout_body_part = self.db.select_workout_by_id(previous_workout['workout_id'])['workout'][0][
                     "body_part"]
 
-                body_parts_array = [0, 1, 2, 3]
+                body_parts_array = numpy.arange(4)
 
-                body_parts_array = numpy.where(body_parts_array != numpy.intersect1d(body_parts_array,
-                                                                                     [recent_workout_body_part])[0])
+                body_parts_array = body_parts_array[body_parts_array != recent_workout_body_part]
 
-                body_parts_array = numpy.where(body_parts_array != numpy.intersect1d(body_parts_array,
-                                                                                     [previous_workout_body_part])[0])
+                body_parts_array = body_parts_array[body_parts_array != previous_workout_body_part]
 
                 if body_parts_array.__len__() == 3:
                     return random.choice(body_parts_array)
 
                 if body_parts_array.__len__() == 2:
-
                     if recent_workout_body_part != 0 and previous_workout_body_part != 0:
-                        return numpy.where(body_parts_array != 0)[0]
-
+                        return body_parts_array[body_parts_array != 0][0]
                     else:
                         return random.choice(body_parts_array)
             else:
@@ -186,34 +186,42 @@ class WorkoutController:
         last_intense_delta = last_workout_total_intensity - last_workout_intensity_rating
         form_delta = todays_form - fitness_median
 
-        print("median: ", fitness_median)
-        print("aktuelle form: ", todays_form)
-        print("intense delta: ", last_intense_delta)
-        print("form delta: ", form_delta)
+        min_intensity = 1
+        max_intensity = 5
+
+        intensity_to_return = min_intensity
 
         if -2 < last_intense_delta < 2:
             if -2 < form_delta < 2:
                 if last_intense_delta == -1:
                     if form_delta > 0:
-                        return last_workout_total_intensity
+                        intensity_to_return = last_workout_total_intensity
                     else:
-                        return last_workout_total_intensity - 1
+                        intensity_to_return = last_workout_total_intensity - 1
                 if last_intense_delta == 0:
-                    return last_workout_total_intensity
+                    intensity_to_return = last_workout_total_intensity
                 if last_intense_delta == 1:
                     if form_delta < 0:
-                        return last_workout_total_intensity
+                        intensity_to_return = last_workout_total_intensity
                     else:
-                        return last_workout_total_intensity + 1
+                        intensity_to_return = last_workout_total_intensity + 1
             if form_delta < -1:
-                return last_workout_total_intensity - 1
+                intensity_to_return = last_workout_total_intensity - 1
             if form_delta > 1:
-                return last_workout_total_intensity + 1
+                intensity_to_return = last_workout_total_intensity + 1
         else:
             if last_intense_delta < -1:
-                return last_workout_total_intensity - 1
+                intensity_to_return = last_workout_total_intensity - 1
             if last_intense_delta > 1:
-                return last_workout_total_intensity + 1
+                intensity_to_return = last_workout_total_intensity + 1
+
+        if intensity_to_return < min_intensity:
+            intensity_to_return = min_intensity
+
+        if intensity_to_return > max_intensity:
+            intensity_to_return = max_intensity
+
+        return intensity_to_return
 
     def calculate_fitness_median(self, user_id):
         """

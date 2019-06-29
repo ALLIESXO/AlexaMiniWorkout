@@ -113,12 +113,10 @@ class DbManager:
 
         return workouts_to_return
 
-    def select_workouts_by_user_parameters(self, intensity, duration, body_part):
+    def select_workouts_by_user_parameters(self, intensity):
         """
         get all workouts by the parameters defined by the user
         :param intensity:
-        :param body_part:
-        :param duration:
         :return:
         """
         conn = self.get_connection()
@@ -127,19 +125,18 @@ class DbManager:
         with conn:
             cur = conn.cursor()
             result = cur.execute(
-                "SELECT * from workouts as w WHERE w.intensity = ? AND w.duration = ? AND w.body_part = ?",
-                (intensity, duration, body_part))
+                "SELECT * from workouts as w WHERE w.intensity = ?", (intensity,))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            for row in workouts:
+            for workout_row in workouts:
                 cur = conn.cursor()
                 result = cur.execute(
                     "SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
                     "JOIN workout_exercises as we ON w.id = we.workout_id "
                     "JOIN exercises as ex ON we.exercise_id = ex.id "
-                    "WHERE w.id = ?", (row['id'],))
+                    "WHERE w.id = ?", (workout_row['id'],))
                 exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
-                workout = {"workout": row, "exercises": exercises}
+                workout = {"workout": workout_row, "exercises": exercises}
                 workouts_to_return.append(workout)
 
         return workouts_to_return
