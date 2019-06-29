@@ -37,8 +37,25 @@ def DelegateIntent():
 
     # Emotionen herausfinden und ihn nach quickstart fragen
     if state == 'greeting' or state == 'greeting_known':
-        WorkoutController.analyze_emotion_by_text(spoken_text)
+        feeling = WorkoutController.check_context_wit_ai(spoken_text)
+
+        if feeling == 'verygood':
+            session.attributes['workout_intensity'] = 5
+
+        elif feeling == 'good':
+            session.attributes['workout_intensity'] = 4
+
+        elif feeling == 'normal':
+            session.attributes['workout_intensity'] = 3
+
+        elif feeling == 'bad':
+            session.attributes['workout_intensity'] = 2
+
+        elif feeling == 'verybad':
+            session.attributes['workout_intensity'] = 1
+
         session.attributes['state'] = 'choose_workout'
+
         return question(WorkoutController.get_speech(session.attributes['state']))
 
     # Moechte er Quickstart oder normal Workout auswaehlen
@@ -46,8 +63,6 @@ def DelegateIntent():
         dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
         if dialog_context == 'yes':
             session.attributes['state'] = 'type_of_workout'
-            # standard param
-
             return question(WorkoutController.get_speech(session.attributes['state']))
         else:
             session.attributes['state'] = 'length_of_workout'
@@ -125,6 +140,7 @@ def DelegateIntent():
         return question(workout_begin())
 
 # ####### Starting Workout #########
+    # TODO: Questions according the actual exercise must be
 
     elif state == 'first_workout':
         workout = session.attributes['workout']
@@ -179,20 +195,21 @@ def DelegateIntent():
     # ##### Retrospective begins here  #########
 
     elif state == 'retrospective_start':
+
+        feedback = WorkoutController.get_feedback_out_of_context(spoken_text)
         # TODO: save retrospective in DB (some are just dummies)
-        # TODO: analyze using intents
         session.attributes['state'] = 'specific_easy'
         return question(WorkoutController.get_speech('specific_easy'))
 
     elif state == 'specific_easy':
         # TODO: save retrospective in DB (some are just dummies)
-        # TODO: analyze using intents
+        feedback = WorkoutController.get_feedback_out_of_context(spoken_text)
         session.attributes['state'] = 'specific_hard'
         return question(WorkoutController.get_speech('specific_hard'))
 
     elif state == 'specific_hard':
         # TODO: save retrospective in DB (some are just dummies)
-        # TODO: analyze using intents
+        feedback = WorkoutController.get_feedback_out_of_context(spoken_text)
 
         # TODO: IF NO DATA OF USER EXISTS about this question
         session.attributes['state'] = 'day_time_training'
@@ -200,7 +217,16 @@ def DelegateIntent():
 
     elif state == 'day_time_training':
         # TODO: save retrospective in DB (some are just dummies)
-        # TODO: analyze using intents
+        daytime = WorkoutController.check_context_wit_ai(spoken_text)
+
+        if daytime == 'evening':
+            # TODO: save in DB
+            pass
+
+        elif daytime == 'morning':
+            # TODO: save in DB
+            pass
+
         session.attributes['state'] = 'farewell_retro'
         return question(WorkoutController.get_speech('farewell_retro'))
 
@@ -214,6 +240,7 @@ def workout_begin():
     "Dein Workout besteht aus (yaml part1) " + "10 Uebungen" + "Am Anfang kannst du immer zu einer Uebung fragen ..."
     :return: String with correct number of workout exercises
     """
+
     # TODO: intensity is only mapped to have a value 1,2,3. Inside DB it should be 1,2,3,4,5
     intensity = session.attributes['workout_intensity']
     duration = session.attributes['workout_length']
