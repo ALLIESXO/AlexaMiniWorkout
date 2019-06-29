@@ -1,12 +1,15 @@
 # Diese .yaml Datei ist eine Sammlung von Fragen und Sätzen, damit die Benutzung der App etwas natürlicher vorkommt.
 
 ########### Pre Workout ###########
+ssm_test:
+  - <speak> Es geht los <prosody rate="x-slow"> in <break time="1s"/> 3 <break time="1s"/> 2 <break time="1s"/> 1 <break time="0.5s"/> </prosody> Go! <break time="3s"/> Fertig! Kurze Pause.  </speak>
+
 greeting:
-  - Willkommen zu deinem Home Workout. Wie fühlst du dich heute?
-  - Hi! Gut dass du ein Workout machen möchtest. Fühlst du dich motiviert?
-  - Hi, ich bin dein Trainer für Heute. Fühlst du dich fit?
-  - Gut dass du dich für dein Home Workout entschieden hast. Darf ich dich fragen wie es dir geht?
-  - Hi, ich bin dein persönlicher Trainer und begleite dich bei deinem Home Workout. Zuerst würde ich gerne wissen, wie du dich fühlst.
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Willkommen </say-as> zu deinem Home Workout. Wie fühlst du dich heute?  </lang> </speak>
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection">Moin! </say-as> Mich freut es ,dass du ein Workout machen möchtest. Fühlst du dich motiviert? </lang>  </speak>
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Hey </say-as>, ich bin dein Trainer für Heute. Fühlst du dich fit? </lang>  </speak>
+  - <speak>  <lang xml:lang="de-DE"> Gut, dass du dich für dein Home Workout entschieden hast. Darf ich dich fragen wie es dir geht?  </lang>  </speak>
+  - <speak>  <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Hey </say-as>, ich bin dein persönlicher Trainer und begleite dich bei deinem Home Workout. Zuerst würde ich gerne wissen, wie du dich fühlst. </lang>  </speak>
 
 greeting_known:
   - Schön dich wieder zu sehen! Dein Workout wartet bereits auf dich. Aber zuerst möchte ich dich fragen wie du dich fühlst.
@@ -61,37 +64,30 @@ difficulty:
 
 
 workout_begin_1:
-  - Dein Workout besteht aus # X Übungen
-  - Wir machen insgesamt # X Übungen
-  - Insgesamt machen wir # X Übungen
-  - Das Workout beinhaltet # X Übungen
-  - Dieses Workout besitzt # X Übungen
+  - Dein Workout besteht aus  # X Übungen.
+  - Wir machen insgesamt  # X Übungen
+  - Insgesamt machen wir  # X Übungen
+  - Das Workout beinhaltet  # X Übungen
+  - Dieses Workout besitzt  # X Übungen
 
 workout_begin_2:
-  - Am Anfang kannst du immer zu einer Übung kurz nachfragen, falls du die Übung nicht kennst.
-  - Frage am Anfang einer Übung einfach kurz nach, falls du eine Übung nicht kennen solltest.
-  - Falls du eine Übung nicht kennst, frage einfach immer direkt nach ,bevor wir loslegen.
-  - Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
+  -  Übungen. Am Anfang kannst du immer zu einer Übung kurz nachfragen, falls du die Übung nicht kennst.
+  -  Übungen. Frage am Anfang einer Übung einfach kurz nach, falls du eine Übung nicht kennen solltest.
+  -  Übungen. Falls du eine Übung nicht kennst, frage einfach immer direkt nach, bevor wir loslegen.
+  -  Übungen. Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
 
 first_workout:
-  - Die erste Übung ist # Übung XX
-  - Wir fangen an mit # Übung XX
-  - Los geht es mit # Übung XX
-  - Wir starten mit # Übung XX
-  - Als erstes ist dran # Übung XX
-  - Wir beginnen mit # Übung XX
+  - <speak> Die erste Übung ist <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir fangen an mit <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Los geht es mit <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir starten mit <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Als erstes ist dran <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir beginnen mit <lang xml:lang="en-GB"> # Übung XX
 
 ## Countdown wird wohl besser mit SSML gemacht.
 countdown_start:
-  - Es geht los in 3. 2. 1. Jetzt!
-  - Leg los in 3. 2. 1. Jetzt!
-  - Wir beginnen in 3. 2. 1. Los!
-
-## Countdown wird wohl besser mit SSML gemacht.
-countdown_end:
-  - Fertig.
-  - Und stopp!
-  - 3. 2. 1. Fertig.
+  - </lang> <break time="2s"/> Es geht los <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Go! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Bereit für die nächste Übung?  </speak>
+  - </lang> <break time="2s"/> mach dich bereit <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Start! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Bereit für  </speak>
 
 pause:
   - Wir machen 30 Sekunden Pause.
@@ -101,10 +97,10 @@ pause:
   - Atme kurz durch es geht in 30 Sekunden weiter.
 
 next_workout:
-  - Als nächstes kommen
-  - Jetzt kommen
-  - Die nächste Übung ist
-  - Weiter gehts mit
+  - <speak> Als nächstes kommen <lang xml:lang="en-GB">
+  - <speak> Jetzt kommen <lang xml:lang="en-GB">
+  - <speak> Die nächste Übung ist <lang xml:lang="en-GB">
+  - <speak> Weiter gehts mit <lang xml:lang="en-GB">
 
 workout_done_1:
   - Fertig! Wir sind für heute durch. Du hast nun # X Punkte dazubekommen.
@@ -120,11 +116,11 @@ workout_done_2:
   - Wie wäre es mit einem Feedback? Darf ich dir dazu ein paar Fragen stellen?
 
 farewell:
-  - Okay, vielleicht beim nächsten Mal. Auf Wiedersehen!
-  - Auf Wiedersehen!
-  - Bis zum nächsten Mal! Tschüss.
+  - <speak> <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Alles klar,</say-as> vielleicht beim nächsten Mal. Auf Wiedersehen! </lang> </speak>
+  - <speak> <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> wie du meinst  </say-as><say-as interpret-as="interjection"> mach's gut </say-as></lang> </speak>
+  - <speak> Bis zum nächsten Mal!<say-as interpret-as="interjection"> tschö </say-as> </speak>
   - Wir sehen uns wieder beim nächsten Training.
-  - Dann bis zum nächsten Mal.
+  - <speak> Dann bis zum nächsten Mal. <lang xml:lang="de-DE"> <say-as interpret-as="interjection">Bis bald</say-as></lang> </speak>
 
 ########### Retrospective ###########
 
@@ -151,7 +147,7 @@ day_time_training:
   - Welche Tageszeit zum Trainieren findest du angenehm? Morgen oder Abends?
 
 farewell_retro:
-  - Vielen Dank für dein Feeback. Auf Wiedersehen!
+  - Vielen Dank für dein Feedback. Auf Wiedersehen!
   - Perfekt, das war alles. Dann sehen wir uns beim nächsten Training wieder.
   - Danke für das Feedback. Bis zum nächsten Mal! Tschüss.
   - Die Retro ist durch. Wir sehen uns wieder beim nächsten Training.
