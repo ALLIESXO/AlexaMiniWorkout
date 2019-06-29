@@ -328,3 +328,20 @@ class WorkoutController:
             return "not_found"
 
         return answer
+
+    @staticmethod
+    def get_feedback_out_of_context(spoken_text):
+
+        emotion = WorkoutController.analyze_emotion_by_text(spoken_text)
+        feeling = WorkoutController.check_context_wit_ai(spoken_text)
+
+        result_of_feeling = (emotion + feeling) / 2
+
+        if result_of_feeling > 5:
+            result_of_feeling = 5
+        elif result_of_feeling < 1:
+            result_of_feeling = 1
+
+        result_of_feeling = int(round(result_of_feeling))
+
+        return result_of_feeling
