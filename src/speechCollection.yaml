@@ -77,17 +77,17 @@ workout_begin_2:
   -  Übungen. Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
 
 first_workout:
-  - Die erste Übung ist # Übung XX
-  - Wir fangen an mit # Übung XX
-  - Los geht es mit # Übung XX
-  - Wir starten mit # Übung XX
-  - Als erstes ist dran # Übung XX
-  - Wir beginnen mit # Übung XX
+  - <speak> Die erste Übung ist <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir fangen an mit <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Los geht es mit <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir starten mit <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Als erstes ist dran <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir beginnen mit <lang xml:lang="en-GB"> # Übung XX
 
 ## Countdown wird wohl besser mit SSML gemacht.
 countdown_start:
-  - <speak> Es geht los <prosody rate="x-slow"> in <break time="1s"/> 3 <break time="1s"/> 2 <break time="1s"/> 1 <break time="0.5s"/> </prosody> Go! <break time="30s"/> Fertig! Kurze Pause.  </speak>
-  - <speak> Wir beginnen <prosody rate="x-slow"> in <break time="1s"/> 3 <break time="1s"/> 2 <break time="1s"/> 1 <break time="0.5s"/> </prosody> Start! <break time="30s"/> Stopp. Gleich machen wir weiter.  </speak>
+  - </lang> <break time="2s"/> Es geht los <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Go! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Bereit für die nächste Übung?  </speak>
+  - </lang> <break time="2s"/> mach dich bereit <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Start! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Bereit für  </speak>
 
 pause:
   - Wir machen 30 Sekunden Pause.
@@ -97,10 +97,10 @@ pause:
   - Atme kurz durch es geht in 30 Sekunden weiter.
 
 next_workout:
-  - Als nächstes kommen
-  - Jetzt kommen
-  - Die nächste Übung ist
-  - Weiter gehts mit
+  - <speak> Als nächstes kommen <lang xml:lang="en-GB">
+  - <speak> Jetzt kommen <lang xml:lang="en-GB">
+  - <speak> Die nächste Übung ist <lang xml:lang="en-GB">
+  - <speak> Weiter gehts mit <lang xml:lang="en-GB">
 
 workout_done_1:
   - Fertig! Wir sind für heute durch. Du hast nun # X Punkte dazubekommen.
@@ -116,11 +116,11 @@ workout_done_2:
   - Wie wäre es mit einem Feedback? Darf ich dir dazu ein paar Fragen stellen?
 
 farewell:
-  - Okay, vielleicht beim nächsten Mal. Auf Wiedersehen!
-  - Auf Wiedersehen!
-  - Bis zum nächsten Mal! Tschüss.
+  - <speak> <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Alles klar,</say-as> vielleicht beim nächsten Mal. Auf Wiedersehen! </lang> </speak>
+  - <speak> <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> wie du meinst  </say-as><say-as interpret-as="interjection"> mach's gut </say-as></lang> </speak>
+  - <speak> Bis zum nächsten Mal!<say-as interpret-as="interjection"> tschö </say-as> </speak>
   - Wir sehen uns wieder beim nächsten Training.
-  - Dann bis zum nächsten Mal.
+  - <speak> Dann bis zum nächsten Mal. <lang xml:lang="de-DE"> <say-as interpret-as="interjection">Bis bald</say-as></lang> </speak>
 
 ########### Retrospective ###########
 
@@ -147,7 +147,7 @@ day_time_training:
   - Welche Tageszeit zum Trainieren findest du angenehm? Morgen oder Abends?
 
 farewell_retro:
-  - Vielen Dank für dein Feeback. Auf Wiedersehen!
+  - Vielen Dank für dein Feedback. Auf Wiedersehen!
   - Perfekt, das war alles. Dann sehen wir uns beim nächsten Training wieder.
   - Danke für das Feedback. Bis zum nächsten Mal! Tschüss.
   - Die Retro ist durch. Wir sehen uns wieder beim nächsten Training.

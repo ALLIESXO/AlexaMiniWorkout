@@ -40,7 +40,8 @@ class WorkoutControllerTests(unittest.TestCase):
                                                              ["leicht", "leichtes"])
 
     def test_YamlReadSpeeches(self):
-        result = WorkoutController.get_speech("ssm_test")
+        result = WorkoutController.get_speech("workout_begin_2")
+        print result
         self.assertIsInstance(result, str)
 
 
