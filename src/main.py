@@ -1,3 +1,4 @@
+# coding=utf-8
 from workout_controller import WorkoutController
 from flask import Flask, render_template
 from flask_ask import Ask, request, context, statement, question, session, delegate
@@ -92,17 +93,15 @@ def DelegateIntent():
             session.attributes['state'] = 'difficulty'
             return question(WorkoutController.get_speech(session.attributes['state']))
 
-    elif state == 'body_part':   # TODO: WIT AI INTENT
+    elif state == 'body_part':
 
-        lower_body = ["beine","unterschenkel","oberschenkel", "unter", "unterkoerper","unteren"]
-        core = ["bauch","ruecken","brust"]
-        upper_body = ["arme","schultern","bizeps","trizeps"]
+        context = WorkoutController.check_context_wit_ai(spoken_text)
 
-        if any(word in spoken_text for word in lower_body):
+        if context == "lowerbody":
             session.attributes['workout_body_part'] = 3
-        elif any(word in spoken_text for word in core):
+        elif context == "core":
             session.attributes['workout_body_part'] = 2
-        elif any(word in spoken_text for word in upper_body):
+        elif context == "upperbody":
             session.attributes['workout_body_part'] = 1
         else:
             session.attributes['workout_body_part'] = 0
@@ -120,11 +119,11 @@ def DelegateIntent():
         session.attributes['state'] = 'workout_begin'
         return question(workout_begin())
 
-
 # ####### Starting Workout #########
 
     elif state == 'first_workout':
-        pass
+        session.attributes['workout']
+
 
     else:
         return statement(WorkoutController.get_speech('error'))
@@ -147,7 +146,7 @@ def workout_begin():
         body_part=body_part,
         user_id=context.System.user['userId']
     )
-    session.attributes['workout_body_part'] = workout
+    session.attributes['workout'] = workout
 
     if workout is []:
         session.attributes['state'] = 'error'
