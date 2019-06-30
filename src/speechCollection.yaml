@@ -29,7 +29,7 @@ choose_workout:
   - Sollen wir dir ein Workout einrichten?
   - Willst du dir ein Workout einrichten?
   - Möchtest du ein Workout selbst einrichten?
-  -
+
 length_of_workout:
   - Soll es ein 14 Minuten Workout werden oder ein 7 Minuten Workout?
   - Wie lang soll das Workout werden? 7 oder 14 Minuten?
@@ -60,8 +60,13 @@ difficulty:
   - Darf das Workout anstrengend sein?
   - Wie schwierig darf das Workout sein? Leicht, normal oder schwer?
 
-########### During Workout ###########
+question:
+  - Entschuldige, ich habe dich nicht verstanden. Könntest du dich wiederholen?
+  - Das habe ich gerade nicht mitbekommen. Kannst du dich wiederholen?
+  - Sorry, ich hab dich nicht verstanden. Würdest du dich bitte wiederholen?
+  - Deine Antwort ist nicht verständlich. Kannst du bitte dich anders ausdrücken?
 
+########### During Workout ###########
 
 workout_begin_1:
   - Dein Workout besteht aus  # X Übungen.

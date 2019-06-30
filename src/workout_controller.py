@@ -132,7 +132,7 @@ class WorkoutController:
             alexa_speaks = speech_list[0]
             try:
                 alexa_speaks = alexa_speaks.encode('utf-8')
-            except UnicodeEncodeError:
+            except AttributeError:
                 print alexa_speaks
                 alexa_speaks = speech_list[0]
 
