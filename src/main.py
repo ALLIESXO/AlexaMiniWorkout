@@ -68,30 +68,39 @@ def DelegateIntent():
         if dialog_context == 'user_workout':
             session.attributes['state'] = 'choose_workout'
             return question(WorkoutController.get_speech(session.attributes['state']))
-        else:
+        elif dialog_context == 'alexa_workout':
             session.attributes['state'] = 'workout_begin'
             session.attributes['quickstart'] = 1
 
             answer = workout_begin()
 
-            if answer[1] is 1:
+            if answer[1] == 1:
                 return statement(answer[0])
             else:
                 return question(answer[0])
+
+        else:
+            return not_understood_question(dialog_context)
+
+    elif state == 'question':
+        session.attributes['state'] = session.attributes['last_question']
+        return question(WorkoutController.get_speech(session.attributes['state']))
 
     elif state == 'choose_workout':
         dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
         if dialog_context == 'yes':
             session.attributes['state'] = 'length_of_workout'
             return question(WorkoutController.get_speech(session.attributes['state']))
-        else:
+        elif dialog_context == 'no':
             session.attributes['state'] = 'type_user_workout'
             return question(WorkoutController.get_speech(session.attributes['state']))
+        else:
+            return not_understood_question(dialog_context)
 
     elif state == 'type_user_workout':
         workout = wc.get_workout_by_name(spoken_text)
 
-        if workout is None or workout is -1:
+        if workout is None or workout == -1:
             session.attributes['state'] = 'choose_workout'
             speech = "Leider konnte ich kein Workout finden, welches diesen Namen trägt."
             speech = speech + " Möchtest du stattdessen ein Workout einrichten?"
@@ -102,19 +111,23 @@ def DelegateIntent():
 
             answer = workout_begin()
 
-            if answer[1] is 1:
+            if answer[1] == 1:
                 return statement(answer[0])
             else:
                 return question(answer[0])
-
 
     elif state == 'length_of_workout' and session.attributes['quickstart'] == 0:
         dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
 
         if dialog_context == 'long_workout':
             session.attributes['workout_length'] = 14
-        else:
+
+        elif dialog_context == 'short_workout':
             session.attributes['workout_length'] = 7
+
+        else:
+            return not_understood_question(dialog_context)
+
         session.attributes['state'] = 'shall_we_train_specific'
         return question(WorkoutController.get_speech(session.attributes['state']))
 
@@ -124,9 +137,11 @@ def DelegateIntent():
         if dialog_context == "yes":
             session.attributes['state'] = 'body_part'
             return question(WorkoutController.get_speech(session.attributes['state']))
-        else:
+        elif dialog_context == "no":
             session.attributes['state'] = 'difficulty'
             return question(WorkoutController.get_speech(session.attributes['state']))
+        else:
+            return not_understood_question(dialog_context)
 
     elif state == 'body_part':
 
@@ -138,8 +153,11 @@ def DelegateIntent():
             session.attributes['workout_body_part'] = 2
         elif context_state == "upperbody":
             session.attributes['workout_body_part'] = 1
-        else:
+        elif context_state == "full_body":
             session.attributes['workout_body_part'] = 0
+
+        else:
+            return not_understood_question(context_state)
 
         session.attributes['state'] = 'difficulty'
         return question(WorkoutController.get_speech(session.attributes['state']))
@@ -151,14 +169,16 @@ def DelegateIntent():
             session.attributes['workout_intensity'] = 1
         elif context_state == 'schwer':
             session.attributes['workout_intensity'] = 3
-        else:
+        elif context_state == 'normal':
             session.attributes['workout_intensity'] = 2
+        else:
+            return not_understood_question(context_state)
 
         session.attributes['state'] = 'workout_begin'
 
         answer = workout_begin()
 
-        if answer[1] is 1:
+        if answer[1] == 1:
             return statement(answer[0])
         else:
             return question(answer[0])
@@ -209,7 +229,7 @@ def DelegateIntent():
         context = WorkoutController.check_context_wit_ai(spoken_text)
 
         # user will retro machen
-        if context is 'yes':
+        if context == 'yes':
             session.attributes['state'] = 'retrospective_start'
             return question(WorkoutController.get_speech('overall'))
 
@@ -282,7 +302,7 @@ def workout_begin():
         return speech, 0
 
     # Quickstart case
-    elif session.attributes['quickstart'] is 1:
+    elif session.attributes['quickstart'] == 1:
         workout = wc.get_workout_by_alexa(user_id=context.System.user['userId'], todays_form=intensity)
 
     # Normal case
@@ -296,9 +316,12 @@ def workout_begin():
 
     session.attributes['workout'] = workout
 
-    if workout is -1 or workout is None:
+    if workout == -1 or workout is None:
         session.attributes['state'] = 'error'
-        return "Sorry aber ich habe keine Workouts auf Lager die gerade passen.", 1
+        sorry = "Sorry aber ich habe keine Workouts auf Lager die gerade passen. " \
+                + WorkoutController.get_speech('error')
+        
+        return sorry, 1
 
     else:
         speak_part1 = str(WorkoutController.get_speech('workout_begin_1'))
@@ -308,6 +331,15 @@ def workout_begin():
 
         session.attributes['state'] = 'first_workout'
         return speech, 0
+
+
+def not_understood_question(dialog_context):
+    print dialog_context
+    print session.attributes['state']
+    if dialog_context == 'question':
+        return question(WorkoutController.get_speech(session.attributes['state']))
+    else:
+        return question(WorkoutController.get_speech('question'))
 
 
 if __name__ == '__main__':
