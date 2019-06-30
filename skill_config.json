@@ -1,0 +1,42 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "home workout",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "DelegateIntent",
+                    "slots": [
+                        {
+                            "name": "any",
+                            "type": "AMAZON.Person"
+                        }
+                    ],
+                    "samples": [
+                        "{any}"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
