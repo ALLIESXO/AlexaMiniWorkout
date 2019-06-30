@@ -37,25 +37,27 @@ class DbManager:
         :return: workout and exercises as json
         """
         conn = self.get_connection()
+        try:
+            with conn:
+                cur = conn.cursor()
+                result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
+                            "JOIN workout_exercises as we ON w.id = we.workout_id "
+                            "JOIN exercises as ex ON we.exercise_id = ex.id "
+                            "WHERE w.name like ?", (name,))
 
-        with conn:
-            cur = conn.cursor()
-            result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                                 "JOIN workout_exercises as we ON w.id = we.workout_id "
-                                 "JOIN exercises as ex ON we.exercise_id = ex.id "
-                                 "WHERE w.name like ?", (name,))
+                exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
+                cur = conn.cursor()
+                result = cur.execute("SELECT * FROM workouts as w "
+                            "WHERE w.name like ?", (name,))
 
-            cur = conn.cursor()
-            result = cur.execute("SELECT * FROM workouts as w "
-                                 "WHERE w.name like ?", (name,))
+                workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
+                workout = {"workout": workouts,"exercises":exercises}
 
-            workout = {"workout": workouts, "exercises": exercises}
-
-            return workout
+                return workout
+        except Exception:
+            return None
 
     def select_workout_by_id(self, id):
         """
