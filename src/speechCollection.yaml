@@ -17,11 +17,6 @@ greeting_known:
   - Gut, dass du wieder da bist. Ich freue mich heute wieder dein Trainer zu sein. Wie fühlst du dich heute?
   - Hi! Gut dass du ein Workout machen möchtest. Fühlst du dich motiviert?
 
-choose_workout:
-  - Magst du ein Workout selbst auswählen?
-  - Willst du dir ein Workout einrichten?
-  - Möchtest du ein Workout selbst auswählen?
-
 type_of_workout:
   - Alles klar. Möchtest du ein bestimmtes Workout starten? Oder ein Alexa Workout?
   - Dann lass uns loslegen. Welches Workout möchtest du denn machen, ein Alexa Workout oder ein anderes?
@@ -30,6 +25,11 @@ type_of_workout:
   - Okay, möchtest du ein bestimmtes Workout durchziehen oder eins von meinen?
   - Möchtest du ,dass ich dir ein Workout erstelle oder magst du ein bestimmtes Workout machen?
 
+choose_workout:
+  - Sollen wir dir ein Workout einrichten?
+  - Willst du dir ein Workout einrichten?
+  - Möchtest du ein Workout selbst einrichten?
+  -
 length_of_workout:
   - Soll es ein 14 Minuten Workout werden oder ein 7 Minuten Workout?
   - Wie lang soll das Workout werden? 7 oder 14 Minuten?
@@ -77,12 +77,12 @@ workout_begin_2:
   -  Übungen. Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
 
 first_workout:
-  - <speak> Die erste Übung ist <lang xml:lang="en-GB"> # Übung XX
-  - <speak> Wir fangen an mit <lang xml:lang="en-GB"> # Übung XX
-  - <speak> Los geht es mit <lang xml:lang="en-GB"> # Übung XX
-  - <speak> Wir starten mit <lang xml:lang="en-GB"> # Übung XX
-  - <speak> Als erstes ist dran <lang xml:lang="en-GB"> # Übung XX
-  - <speak> Wir beginnen mit <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Die erste Übung ist; <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir fangen an mit; <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Los geht es mit; <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir starten mit; <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Als erstes ist dran; <lang xml:lang="en-GB"> # Übung XX
+  - <speak> Wir beginnen mit; <lang xml:lang="en-GB"> # Übung XX
 
 ## Countdown wird wohl besser mit SSML gemacht.
 countdown_start:
