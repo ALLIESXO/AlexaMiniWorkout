@@ -16,10 +16,11 @@ If user exists we greet him as we would know him already.
 """
 @ask.launch
 def launched():
+    session.attributes['workout'] = None
     session.attributes['quickstart'] = 0
     session.attributes['workout_length'] = 7
     session.attributes['workout_body_part'] = 0
-    session.attributes['workout_intensity'] = 2 # TODO: What is the standard value ?
+    session.attributes['workout_intensity'] = 3 # TODO: What is the standard value ?
 
     if wc.check_if_user_exist(user_id=context.System.user['userId']) is True:
         print str(context.System.user['userId'])
@@ -54,43 +55,58 @@ def DelegateIntent():
         elif feeling == 'verybad':
             session.attributes['workout_intensity'] = 1
 
-        session.attributes['state'] = 'choose_workout'
+        else:
+            session.attributes['workout_intensity'] = 3
+
+        session.attributes['state'] = 'type_of_workout'
 
         return question(WorkoutController.get_speech(session.attributes['state']))
 
-    # Moechte er Quickstart oder normal Workout auswaehlen
-    elif state == 'choose_workout':
-        dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
-        if dialog_context == 'yes':
-            session.attributes['state'] = 'type_of_workout'
-            # standard param
-
-            return question(WorkoutController.get_speech(session.attributes['state']))
-        else:
-            session.attributes['state'] = 'length_of_workout'
-            session.attributes['quickstart'] = 1
-            return question(WorkoutController.get_speech(session.attributes['state']))
-
-    # Quickstart -> Frage nach ob er ein 7 oder 14 minuten Workout machen moechte.
-    elif state == 'length_of_workout' and session.attributes['quickstart'] == 1:
-        dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
-        if dialog_context == 'long_workout':
-            session.attributes['workout_length'] = 14
-        else:
-            session.attributes['workout_length'] = 7
-
-        session.attributes['state'] = 'workout_begin'
-        return question(workout_begin())
-
-    # Normal Workout auswaehlen (kein Quickstart) - Alexa oder Benutzer Workout ?
+    # Möchte der User ein bestimmtes oder ein Alexa Workout machen ?
     elif state == 'type_of_workout':
         dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
         if dialog_context == 'user_workout':
-            session.attributes['state'] = 'type_user_workout'
+            session.attributes['state'] = 'choose_workout'
             return question(WorkoutController.get_speech(session.attributes['state']))
         else:
+            session.attributes['state'] = 'workout_begin'
+            session.attributes['quickstart'] = 1
+
+            answer = workout_begin()
+
+            if answer[1] is 1:
+                return statement(answer[0])
+            else:
+                return question(answer[0])
+
+    elif state == 'choose_workout':
+        dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
+        if dialog_context == 'yes':
             session.attributes['state'] = 'length_of_workout'
             return question(WorkoutController.get_speech(session.attributes['state']))
+        else:
+            session.attributes['state'] = 'type_user_workout'
+            return question(WorkoutController.get_speech(session.attributes['state']))
+
+    elif state == 'type_user_workout':
+        workout = wc.get_workout_by_name(spoken_text)
+
+        if workout is None or workout is -1:
+            session.attributes['state'] = 'choose_workout'
+            speech = "Leider konnte ich kein Workout finden, welches diesen Namen trägt."
+            speech = speech + " Möchtest du stattdessen ein Workout einrichten?"
+            return question(speech)
+
+        else:
+            session.attributes['workout'] = workout
+
+            answer = workout_begin()
+
+            if answer[1] is 1:
+                return statement(answer[0])
+            else:
+                return question(answer[0])
+
 
     elif state == 'length_of_workout' and session.attributes['quickstart'] == 0:
         dialog_context = WorkoutController.check_context_wit_ai(spoken_text)
@@ -139,7 +155,14 @@ def DelegateIntent():
             session.attributes['workout_intensity'] = 2
 
         session.attributes['state'] = 'workout_begin'
-        return question(workout_begin())
+
+        answer = workout_begin()
+
+        if answer[1] is 1:
+            return statement(answer[0])
+        else:
+            return question(answer[0])
+
 
 # ####### Starting Workout #########
     # TODO: Questions according the actual exercise must be
@@ -247,17 +270,35 @@ def workout_begin():
     duration = session.attributes['workout_length']
     body_part = session.attributes['workout_body_part']
 
-    workout = wc.get_workout_by_user(
-        intensity=intensity,
-        duration=duration,
-        body_part=body_part,
-        user_id=context.System.user['userId']
-    )
+    # When choosing workout by name this case happens
+    if session.attributes['workout'] is not None:
+        workout = session.attributes['workout']
+        speak_part1 = str(WorkoutController.get_speech('workout_begin_1'))
+        speak_part2 = str(WorkoutController.get_speech('workout_begin_2'))
+
+        speech = speak_part1 + ' ' + str(len(workout['exercises'])) + ' ' + speak_part2
+
+        session.attributes['state'] = 'first_workout'
+        return speech, 0
+
+    # Quickstart case
+    elif session.attributes['quickstart'] is 1:
+        workout = wc.get_workout_by_alexa(user_id=context.System.user['userId'], todays_form=intensity)
+
+    # Normal case
+    else:
+        workout = wc.get_workout_by_user(
+            intensity=intensity,
+            duration=duration,
+            body_part=body_part,
+            user_id=context.System.user['userId']
+        )
+
     session.attributes['workout'] = workout
 
-    if workout is -1:
+    if workout is -1 or workout is None:
         session.attributes['state'] = 'error'
-        return statement("Sorry aber ich habe keine Workouts auf Lager die gerade passen.")
+        return "Sorry aber ich habe keine Workouts auf Lager die gerade passen.", 1
 
     else:
         speak_part1 = str(WorkoutController.get_speech('workout_begin_1'))
@@ -266,7 +307,7 @@ def workout_begin():
         speech = speak_part1 + ' ' + str(len(workout['exercises'])) + ' ' + speak_part2
 
         session.attributes['state'] = 'first_workout'
-        return speech
+        return speech, 0
 
 
 if __name__ == '__main__':

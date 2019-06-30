@@ -130,7 +130,11 @@ class WorkoutController:
 
             random.shuffle(speech_list)
             alexa_speaks = speech_list[0]
-            alexa_speaks = alexa_speaks.encode('utf-8')
+            try:
+                alexa_speaks = alexa_speaks.encode('utf-8')
+            except UnicodeEncodeError:
+                print alexa_speaks
+                alexa_speaks = speech_list[0]
 
         return alexa_speaks
 
