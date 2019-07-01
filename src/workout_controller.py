@@ -27,7 +27,7 @@ class WorkoutController:
             # TODO: Save user in DB
             return False
 
-    def get_workout_by_user(self, intensity, duration, body_part, user_id):
+    def get_workout_by_user(self, intensity, duration, body_part, user_id, remove_last_workout = True):
         """
         Get a workout depending on the parameters the user told alexa
         :param intensity:
@@ -37,6 +37,8 @@ class WorkoutController:
         :return:
         """
         workouts = self.db.select_workouts_by_user_parameters(intensity)
+        workouts_body_part_match = []
+        workouts_duration_match = []
 
         if workouts.__len__() == 0:
             'There is no such workout'
@@ -46,18 +48,49 @@ class WorkoutController:
             'Select a workout at random taking the last done workout into account'
             last_user_workout = self.db.get_last_user_workout(user_id)
 
+            #TODO wenn was gelöscht werden soll: flag setzen und erst zum Schluss am Ende der Schleife eine if-Bed.
+            # nach der flag und dann löschen
             if last_user_workout != -1:
 
-                for workout in workouts:
-                    if workout["workout"]["id"] == last_user_workout["id"]:
+                index = 0
+                while workouts.__len__() > 0:
+                    workout = workouts[index]
+                    workout_removed = False
+
+                    if not workout_removed and workout["workout"]["id"] == last_user_workout["workout_id"] \
+                            and remove_last_workout:
                         workouts.remove(workout)
-                        break
+                        index -= 1
+                        workout_removed = True
 
-            # TODO filter remaining workouts by duration and body part
-            #  implement fallback options if no adequate workout is found
+                    if not workout_removed and workout["workout"]["body_part"] != body_part:
+                        workouts.remove(workout)
+                        index -= 1
+                        workout_removed = True
+                    elif not workout_removed:
+                        workouts_body_part_match.append(workout)
 
-            random.shuffle(workouts)
-            return workouts[0]
+                    if not workout_removed and workout["workout"]["duration"] != duration:
+                        workouts.remove(workout)
+                        index -= 1
+                    elif not workout_removed:
+                        workouts_duration_match.append(workout)
+
+                    index += 1
+
+                if workouts.__len__() > 0:
+                    random.shuffle(workouts)
+                    return workouts[0]
+
+                if workouts_body_part_match.__len__() > 0:
+                    random.shuffle(workouts_body_part_match)
+                    return workouts_body_part_match[0]
+
+                if workouts_duration_match.__len__() > 0:
+                    random.shuffle(workouts_duration_match)
+                    return workouts_duration_match[0]
+
+                return last_user_workout
         else:
             'return the only workout with this parameters'
             return workouts[0]

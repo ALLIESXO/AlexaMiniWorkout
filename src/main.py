@@ -20,7 +20,7 @@ def launched():
     session.attributes['quickstart'] = 0
     session.attributes['workout_length'] = 7
     session.attributes['workout_body_part'] = 0
-    session.attributes['workout_intensity'] = 3 # TODO: What is the standard value ?
+    session.attributes['workout_intensity'] = 1
 
     if wc.check_if_user_exist(user_id=context.System.user['userId']) is True:
         print str(context.System.user['userId'])
@@ -215,6 +215,7 @@ def DelegateIntent():
 
             speech = speech_1 + ' ' + str(workout) + ' ' + speech_2
             session.attributes['ex_count'] = count + 1
+
             return question(speech)
 
         else:
@@ -311,7 +312,7 @@ def workout_begin():
             intensity=intensity,
             duration=duration,
             body_part=body_part,
-            user_id=context.System.user['userId']
+            user_id=1, #ToDo use Amazon id
         )
 
     session.attributes['workout'] = workout

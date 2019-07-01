@@ -11,7 +11,7 @@ def main():
 
     alexa_workout = wc.get_workout_by_alexa(1, 2)
 
-    print(alexa_workout)
+    print(alexa_workout["workout"]["name"])
 
 
 if __name__ == '__main__':
