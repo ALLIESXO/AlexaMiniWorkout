@@ -1,6 +1,8 @@
 # AlexaMiniWorkout
-#### Alexa Home Workout App - Work on your body with the help of alexa 
 
+<img src="https://github.com/ALLIESXO/AlexaMiniWorkout/blob/master/alexa.PNG" width="350">
+
+#### Alexa Home Workout App - Work on your body with the help of alexa 
 
 ## How to setup all components on Raspberry Pi 
 Components used:
