@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from db_manager import DbManager
-import random
 import yaml
 import codecs
 import json
@@ -10,6 +9,7 @@ import random
 from ibm_watson import LanguageTranslatorV3
 from ibm_watson import ToneAnalyzerV3  # pip install --upgrade "ibm-watson>=3.0.3"
 from wit import Wit  # pip install wit
+import threading
 
 
 class WorkoutController:
@@ -27,7 +27,7 @@ class WorkoutController:
             # TODO: Save user in DB
             return False
 
-    def get_workout_by_user(self, intensity, duration, body_part, user_id, remove_last_workout = True):
+    def get_workout_by_user(self, intensity, duration, body_part, user_id):
         """
         Get a workout depending on the parameters the user told alexa
         :param intensity:
@@ -36,61 +36,66 @@ class WorkoutController:
         :param user_id:
         :return:
         """
+
+        'get all workouts from db that match the selected intensity value'
         workouts = self.db.select_workouts_by_user_parameters(intensity)
         workouts_body_part_match = []
         workouts_duration_match = []
 
         if workouts.__len__() == 0:
-            'There is no such workout'
+            'there is no such workout'
             return []
 
         if workouts.__len__() > 1:
-            'Select a workout at random taking the last done workout into account'
+            'get the last user workout from db'
             last_user_workout = self.db.get_last_user_workout(user_id)
 
-            #TODO wenn was gelöscht werden soll: flag setzen und erst zum Schluss am Ende der Schleife eine if-Bed.
-            # nach der flag und dann löschen
-            if last_user_workout != -1:
+            index = 0
+            while index < workouts.__len__():
+                workout = workouts[index]
+                workout_removed = False
 
-                index = 0
-                while workouts.__len__() > 0:
-                    workout = workouts[index]
-                    workout_removed = False
-
-                    if not workout_removed and workout["workout"]["id"] == last_user_workout["workout_id"] \
-                            and remove_last_workout:
-                        workouts.remove(workout)
-                        index -= 1
+                'exclude the last done workout from match list'
+                if workout["workout"]["id"] == last_user_workout["workout_id"]:
+                    workout_removed = True
+                else:
+                    'exclude such workouts that do not match the selected body part'
+                    if workout["workout"]["body_part"] != body_part:
                         workout_removed = True
-
-                    if not workout_removed and workout["workout"]["body_part"] != body_part:
-                        workouts.remove(workout)
-                        index -= 1
-                        workout_removed = True
-                    elif not workout_removed:
+                    else:
                         workouts_body_part_match.append(workout)
 
-                    if not workout_removed and workout["workout"]["duration"] != duration:
-                        workouts.remove(workout)
-                        index -= 1
-                    elif not workout_removed:
+                    'exclude such workouts that do not match the selected duration'
+                    if workout["workout"]["duration"] != duration:
+                        workout_removed = True
+                    else:
                         workouts_duration_match.append(workout)
 
-                    index += 1
+                if workout_removed:
+                    workouts.remove(workout)
+                    index -= 1
 
-                if workouts.__len__() > 0:
-                    random.shuffle(workouts)
-                    return workouts[0]
+                index += 1
 
-                if workouts_body_part_match.__len__() > 0:
-                    random.shuffle(workouts_body_part_match)
-                    return workouts_body_part_match[0]
+            'if the workouts list does still contain workouts then they exactly match the given parameters' \
+                'select a workout at random to return'
+            if workouts.__len__() > 0:
+                random.shuffle(workouts)
+                return workouts[0]
 
-                if workouts_duration_match.__len__() > 0:
-                    random.shuffle(workouts_duration_match)
-                    return workouts_duration_match[0]
+            'prioritize matching body parts over matching durations' \
+                'select a workout at random to return'
+            if workouts_body_part_match.__len__() > 0:
+                random.shuffle(workouts_body_part_match)
+                return workouts_body_part_match[0]
 
-                return last_user_workout
+            if workouts_duration_match.__len__() > 0:
+                random.shuffle(workouts_duration_match)
+                return workouts_duration_match[0]
+
+            'fall back option if no workout was found in db that matches any of the given parameters' \
+                'return the last done workout again'
+            return last_user_workout
         else:
             'return the only workout with this parameters'
             return workouts[0]
@@ -110,9 +115,10 @@ class WorkoutController:
         - The overall development of the user
         :return: the workout selected
         """
+
         last_user_workout = self.db.get_last_user_workout(user_id)
 
-        if last_user_workout:
+        if last_user_workout is not None:
             """
             Calculate best workout
             """
@@ -155,7 +161,6 @@ class WorkoutController:
             print("body part: ", selected_body_part)
 
             return self.get_workout_by_user(selected_intensity, selected_duration, selected_body_part, user_id)
-
         else:
             """
             The user has no last workouts - Therefore select a basic beginner workout

@@ -161,7 +161,7 @@ class DbManager:
         if workouts.__len__() > 0:
             return workouts[0]
         else:
-            return []
+            return None
 
     def get_last_user_workouts(self, user_id):
         """
