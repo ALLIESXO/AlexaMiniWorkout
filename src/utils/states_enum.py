@@ -1,0 +1,7 @@
+from enum import Enum
+
+
+class States(Enum):
+    FIRST_EXCERCISE = "FIRST_EXCERCISE"
+    NEXT_EXCERCISE = "NEXT_EXCERCISE"
+    IN_EXCERCISE = "IN_EXCERCISE"

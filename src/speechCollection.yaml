@@ -81,7 +81,7 @@ workout_begin_2:
   -  Übungen. Falls du eine Übung nicht kennst, frage einfach immer direkt nach, bevor wir loslegen.
   -  Übungen. Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
 
-first_workout:
+FIRST_EXCERCISE:
   - <speak> Die erste Übung ist; <lang xml:lang="en-GB"> # Übung XX
   - <speak> Wir fangen an mit; <lang xml:lang="en-GB"> # Übung XX
   - <speak> Los geht es mit; <lang xml:lang="en-GB"> # Übung XX

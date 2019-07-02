@@ -9,7 +9,6 @@ import random
 from ibm_watson import LanguageTranslatorV3
 from ibm_watson import ToneAnalyzerV3  # pip install --upgrade "ibm-watson>=3.0.3"
 from wit import Wit  # pip install wit
-import threading
 
 
 class WorkoutController:
