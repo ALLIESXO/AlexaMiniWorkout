@@ -502,3 +502,4 @@ class WorkoutController:
         result_of_feeling = int(round(result_of_feeling))
 
         return result_of_feeling
+
