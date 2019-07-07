@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from db_manager import DbManager
-import random
 import yaml
 import codecs
 import json
@@ -36,28 +35,66 @@ class WorkoutController:
         :param user_id:
         :return:
         """
+
+        'get all workouts from db that match the selected intensity value'
         workouts = self.db.select_workouts_by_user_parameters(intensity)
+        workouts_body_part_match = []
+        workouts_duration_match = []
 
         if workouts.__len__() == 0:
-            'There is no such workout'
+            'there is no such workout'
             return []
 
         if workouts.__len__() > 1:
-            'Select a workout at random taking the last done workout into account'
+            'get the last user workout from db'
             last_user_workout = self.db.get_last_user_workout(user_id)
 
-            if last_user_workout != -1:
+            index = 0
+            while index < workouts.__len__():
+                workout = workouts[index]
+                workout_removed = False
 
-                for workout in workouts:
-                    if workout["workout"]["id"] == last_user_workout["id"]:
-                        workouts.remove(workout)
-                        break
+                'exclude the last done workout from match list'
+                if workout["workout"]["id"] == last_user_workout["workout_id"]:
+                    workout_removed = True
+                else:
+                    'exclude such workouts that do not match the selected body part'
+                    if workout["workout"]["body_part"] != body_part:
+                        workout_removed = True
+                    else:
+                        workouts_body_part_match.append(workout)
 
-            # TODO filter remaining workouts by duration and body part
-            #  implement fallback options if no adequate workout is found
+                    'exclude such workouts that do not match the selected duration'
+                    if workout["workout"]["duration"] != duration:
+                        workout_removed = True
+                    else:
+                        workouts_duration_match.append(workout)
 
-            random.shuffle(workouts)
-            return workouts[0]
+                if workout_removed:
+                    workouts.remove(workout)
+                    index -= 1
+
+                index += 1
+
+            'if the workouts list does still contain workouts then they exactly match the given parameters' \
+                'select a workout at random to return'
+            if workouts.__len__() > 0:
+                random.shuffle(workouts)
+                return workouts[0]
+
+            'prioritize matching body parts over matching durations' \
+                'select a workout at random to return'
+            if workouts_body_part_match.__len__() > 0:
+                random.shuffle(workouts_body_part_match)
+                return workouts_body_part_match[0]
+
+            if workouts_duration_match.__len__() > 0:
+                random.shuffle(workouts_duration_match)
+                return workouts_duration_match[0]
+
+            'fall back option if no workout was found in db that matches any of the given parameters' \
+                'return the last done workout again'
+            return last_user_workout
         else:
             'return the only workout with this parameters'
             return workouts[0]
@@ -77,9 +114,10 @@ class WorkoutController:
         - The overall development of the user
         :return: the workout selected
         """
+
         last_user_workout = self.db.get_last_user_workout(user_id)
 
-        if last_user_workout:
+        if last_user_workout is not None:
             """
             Calculate best workout
             """
@@ -122,7 +160,6 @@ class WorkoutController:
             print("body part: ", selected_body_part)
 
             return self.get_workout_by_user(selected_intensity, selected_duration, selected_body_part, user_id)
-
         else:
             """
             The user has no last workouts - Therefore select a basic beginner workout
@@ -465,3 +502,4 @@ class WorkoutController:
         result_of_feeling = int(round(result_of_feeling))
 
         return result_of_feeling
+
