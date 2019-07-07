@@ -1,4 +1,5 @@
 import sqlite3
+import pendulum
 from sqlite3 import Error
 
 
@@ -51,11 +52,12 @@ class DbManager:
                 result = cur.execute("SELECT * FROM workouts as w "
                             "WHERE w.name like ?", (name,))
 
-                workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
+                workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result][0]
 
-                workout = {"workout": workouts,"exercises":exercises}
+                workout = {"workout": workouts, "exercises": exercises}
 
                 return workout
+
         except Exception:
             return None
 
@@ -102,15 +104,15 @@ class DbManager:
                                  (intensity, body_part))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            for row in workouts:
+            for workout_row in workouts:
                 cur = conn.cursor()
                 result = cur.execute(
                     "SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
                     "JOIN workout_exercises as we ON w.id = we.workout_id "
                     "JOIN exercises as ex ON we.exercise_id = ex.id "
-                    "WHERE w.id = ?", (row['id'],))
+                    "WHERE w.id = ?", (workout_row['id'],))
                 exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
-                workout = {"workout": row, "exercises": exercises}
+                workout = {"workout": workout_row, "exercises": exercises}
                 workouts_to_return.append(workout)
 
         return workouts_to_return
@@ -141,6 +143,8 @@ class DbManager:
                 workout = {"workout": workout_row, "exercises": exercises}
                 workouts_to_return.append(workout)
 
+        print workouts_to_return
+
         return workouts_to_return
 
     def get_last_user_workout(self, user_id):
@@ -162,6 +166,15 @@ class DbManager:
             return workouts[0]
         else:
             return None
+
+    def save_user_workout(self, user_id, workout_id, intensity_rating, daily_form):
+        conn = self.get_connection()
+
+        date = pendulum.now()
+        with conn:
+            cur = conn.cursor()
+            cur.execute("INSERT INTO user_workouts (workout_id, intensity_rating, daily_form, user_id, workout_date) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)",
+                        (workout_id, intensity_rating, daily_form, user_id))
 
     def get_last_user_workouts(self, user_id):
         """

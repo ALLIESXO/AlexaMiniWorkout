@@ -26,6 +26,9 @@ class WorkoutController:
             # TODO: Save user in DB
             return False
 
+    def save_user_workout(self, user_id, workout_id, intensity_rating, daily_form):
+        self.db.save_user_workout(user_id, workout_id, intensity_rating, daily_form)
+
     def get_workout_by_user(self, intensity, duration, body_part, user_id):
         """
         Get a workout depending on the parameters the user told alexa
@@ -155,10 +158,6 @@ class WorkoutController:
                 selected_intensity = new_workout_intensity
                 selected_duration = high_duration
 
-            print("duration: ", selected_duration)
-            print("intensity: ", selected_intensity)
-            print("body part: ", selected_body_part)
-
             return self.get_workout_by_user(selected_intensity, selected_duration, selected_body_part, user_id)
         else:
             """
@@ -182,7 +181,7 @@ class WorkoutController:
             week_start = today.start_of('week')
 
             tz = pendulum.timezone('Europe/Paris')
-            previous_workout_date = pendulum.from_timestamp(previous_workout["date"] / 1000)
+            previous_workout_date = pendulum.from_timestamp(previous_workout["workout_date"])
             previous_workout_date = tz.convert(previous_workout_date)
 
             if week_start <= previous_workout_date:

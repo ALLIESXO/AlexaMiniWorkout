@@ -30,7 +30,7 @@ CHOOSE_WORKOUT:
   - Willst du dir ein Workout einrichten?
   - Möchtest du ein Workout selbst einrichten?
 
-length_of_workout:
+LENGTH_OF_WORKOUT:
   - Soll es ein 14 Minuten Workout werden oder ein 7 Minuten Workout?
   - Wie lang soll das Workout werden? 7 oder 14 Minuten?
   - Willst du ein langes Workout machen oder ein kurzes?
@@ -42,18 +42,18 @@ type_user_workout:
   - Wie heißt dein gewolltes Workout?
   - Sag mir mal den Namen vom deinem Workout.
 
-shall_we_train_specific:
+TRAIN_SPECIFIC:
   - Magst du einen bestimmten Körperteil trainieren?
   - Sollen wir dein Workout für ein Körperteil anpassen?
   - Möchtest du ein bestimmten Körperbereich trainieren?
 
-body_part:
+BODYPART:
   - Welchen Körperbereich möchtest du trainieren?
   - Auf welchen Körperbereich sollen wir den Fokus legen?
   - Welchen Körperbereich sollen wir heute intensiver trainieren?
   - Welchen Teil möchtest du besonders trainieren?
 
-difficulty:
+DIFFICULTY:
   - Wie soll das Training gestaltet werden? Schwer, normal oder leicht?
   - Soll ich das Workout schwer, normal oder leicht gestalten?
   - Möchtest du ein leichtes, normales oder eher ein schweres Workout?
@@ -76,10 +76,10 @@ WORKOUT_BEGIN_1:
   - Dieses Workout besitzt  # X Übungen
 
 WORKOUT_BEGIN_2:
-  -  Übungen. Am Anfang kannst du immer zu einer Übung kurz nachfragen, falls du die Übung nicht kennst.
-  -  Übungen. Frage am Anfang einer Übung einfach kurz nach, falls du eine Übung nicht kennen solltest.
-  -  Übungen. Falls du eine Übung nicht kennst, frage einfach immer direkt nach, bevor wir loslegen.
-  -  Übungen. Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen.
+  -  Übungen. Am Anfang kannst du immer zu einer Übung kurz nachfragen, falls du die Übung nicht kennst. Kann es losgehen?
+  -  Übungen. Frage am Anfang einer Übung einfach kurz nach, falls du eine Übung nicht kennen solltest. Kann es losgehen?
+  -  Übungen. Falls du eine Übung nicht kennst, frage einfach immer direkt nach, bevor wir loslegen. Kann es losgehen?
+  -  Übungen. Wenn du eine Übung nicht kennen solltest, frage direkt nach, um eine kurze Erklärung zu bekommen. Kann es losgehen?
 
 FIRST_EXCERCISE:
   - <speak> Die erste Übung ist; <lang xml:lang="en-GB"> # Übung XX
@@ -90,37 +90,58 @@ FIRST_EXCERCISE:
   - <speak> Wir beginnen mit; <lang xml:lang="en-GB"> # Übung XX
 
 ## Countdown wird wohl besser mit SSML gemacht.
-countdown_start:
-  - </lang> <break time="2s"/> Es geht los <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Go! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Bereit für die nächste Übung?  </speak>
-  - </lang> <break time="2s"/> mach dich bereit <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Start! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Bereit für  </speak>
+COUNTDOWN_START:
+  - </lang> <break time="2s"/> Es geht los <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Go! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Die nächste Übung ist
+  - </lang> <break time="2s"/> mach dich bereit <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Start! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Als nächstes kommt
 
-pause:
-  - Wir machen 30 Sekunden Pause.
-  - Ruhe dich kurz aus. Es geht gleich weiter.
-  - 30 Sekunden Pause um kurz was zu trinken.
-  - Kurze Verschnaufpause.
-  - Atme kurz durch es geht in 30 Sekunden weiter.
+COUNTDOWN_START_2:
+  -  . Bereit?</speak>
 
-next_workout:
+UNINTENDED_PAUSE:
+  - <speak> Du weißt doch, dass du währen der Übung nicht reden darfst. Du sollst arbeiten! Jetzt muss ich die Übung pausieren und wenn du sagst es soll weiter gehen, fangen wir mit dieser Übung wieder von vorne an. </speak> # Übung XX
+
+
+COUNTDOWN_START_LAST_EXERCISE:
+  - </lang> <break time="2s"/>Das ist die letzte Übung! Es geht los <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Go! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Geschafft. Bist du kaputt?  </speak>
+  - </lang> <break time="2s"/>Die letzte Übung! Mach dich bereit <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Start! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Du hast es geschafft! Hattest du Spaß?</speak>
+
+
+PAUSE:
+  - Das Workout wird pausiert. Sag mir bescheid, wenn es weiter gehen soll.
+  - Ruhe dich kurz aus udn sag bescheid wenn es weiter gehen soll.
+  - Kurze Verschnaufpause. Melde dich, wenn es weiter gehen soll.
+
+PAUSE_ERROR:
+  - Wenn du das Workout fortsetzen möchtest, sage einfach weiter.
+  - Möchtest du das Workout fortsetzen? Sag einfach weiter.
+  - Wenn deine pause vorbei ist, sag einfach weiter.
+
+
+NEXT_EXCERCISE:
   - <speak> Als nächstes kommen <lang xml:lang="en-GB">
   - <speak> Jetzt kommen <lang xml:lang="en-GB">
   - <speak> Die nächste Übung ist <lang xml:lang="en-GB">
   - <speak> Weiter gehts mit <lang xml:lang="en-GB">
 
-workout_done_1:
+WORKOUT_DONE_1:
   - Fertig! Wir sind für heute durch. Du hast nun # X Punkte dazubekommen.
   - Sauber. Heute bist du mit den Training durch. Du hast nun # X Punkte dazubekommen.
   - Wir sind fertig mit dem Workout. Du hast nun # X Punkte dazubekommen.
   - Stark! Du hast das Workout geschafft. Dein Profil hat # X Punkte dazubekommen.
 
-workout_done_2:
+WORKOUT_DONE_2:
+  - Auf einer Skala von 1 bis 5. Wie schwer war das Training für dich? # X Punkte dazubekommen.
+  - Wie schwierig findest du dieses Workout auf einer Skala von 1 bis 5? # X Punkte dazubekommen.
+  - War das Workout sehr leicht also eine 1 oder sehr schwer also eine 5?
+
+ASK_RETROSPECTIVE:
   - Um dein Training in Zukunft besser zu gestalten, können wir eine kurze Retro durchführen. Ist das okay?
   - Möchtest du mit mir eine kurze Retro durchführen um dein Training in zukunft noch besser anzupassen?
   - Wie wäre es mit einer kurzen Retrospektive um dein Training für die Zukunft besser zu gestalten? Hast du da Lust darauf?
   - Ich würde dir gerne ein paar Fragen für die zukünfitgen Workouts stellen. Magst du mir ein Feedback geben?
   - Wie wäre es mit einem Feedback? Darf ich dir dazu ein paar Fragen stellen?
 
-farewell:
+FAREWELL:
   - <speak> <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> Alles klar,</say-as> vielleicht beim nächsten Mal. Auf Wiedersehen! </lang> </speak>
   - <speak> <lang xml:lang="de-DE"> <say-as interpret-as="interjection"> wie du meinst  </say-as><say-as interpret-as="interjection"> mach's gut </say-as></lang> </speak>
   - <speak> Bis zum nächsten Mal!<say-as interpret-as="interjection"> tschö </say-as> </speak>
@@ -129,29 +150,29 @@ farewell:
 
 ########### Retrospective ###########
 
-overall:
+RETROSPECTIVE_START:
   - Wie fandest du das Training allgemein?
   - Warst du im ganzen zufrieden mit dem Training?
   - War das Training allgemein gut oder schlecht?
   - Wie fandest du das Training insgesamt?
 
-specific_easy:
+SPECIFIC_EASY:
   - Welche Übung fandest du besonders einfach?
   - Welche Übung war dir zu einfach?
   - Gab es eine Übung die dir zu einfach war? Wenn ja welche?
   - Fandest du eine Übung zu einfach? Wenn ja, welche?
 
-specific_hard:
+SPECIFIC_HARD:
   - Welche Übung fandest du besonders schwer?
   - Welche Übung war dir zu schwer?
   - Gab es eine Übung die dir zu schwer war? Wenn ja welche?
   - Fandest du eine Übung zu schwer? Wenn ja, welche?
 
-day_time_training:
+DAY_TIME_TRAINING:
   - Trainierst du lieber Abends oder Morgens?
   - Welche Tageszeit zum Trainieren findest du angenehm? Morgen oder Abends?
 
-farewell_retro:
+FAREWELL_RETRO:
   - Vielen Dank für dein Feedback. Auf Wiedersehen!
   - Perfekt, das war alles. Dann sehen wir uns beim nächsten Training wieder.
   - Danke für das Feedback. Bis zum nächsten Mal! Tschüss.
