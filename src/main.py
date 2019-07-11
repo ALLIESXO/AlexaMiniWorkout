@@ -87,6 +87,7 @@ def DelegateIntent():
         return question_pause(spoken_text)
 
     elif state == States.EXERCISE_QUESTION.value:
+        session.attributes[Attributes.state.value] = States.IN_EXCERCISE.value
         return question_next_exercise(spoken_text, 1)
 
     elif state == States.ASK_RETROSPECTIVE.value:
@@ -373,7 +374,7 @@ def question_next_exercise(spoken_text, onward):
         speech_1 = WorkoutController.get_speech(States.NEXT_EXCERCISE.value)
         speech_2 = WorkoutController.get_speech(States.COUNTDOWN_START.value)
         speech_3 = WorkoutController.get_speech(States.COUNTDOWN_START_2.value)
-        speech = speech_1 + ' ' + str(exercise) + ' ' +  speech_2 + ' ' + next_exercise + ' ' + speech_3
+        speech = speech_1 + ' ' + str(exercise) + ' ' + speech_2 + ' ' + next_exercise + ' ' + speech_3
         session.attributes[Attributes.ex_count.value] = count + 1
         session.attributes[Attributes.excercise_start_time.value] = time.time()
 
