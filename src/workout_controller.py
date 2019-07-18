@@ -491,7 +491,7 @@ class WorkoutController:
         emotion = WorkoutController.analyze_emotion_by_text(spoken_text)
         feeling = WorkoutController.check_context_wit_ai(spoken_text)
 
-        result_of_feeling = (emotion + feeling) / 2
+        result_of_feeling = emotion
 
         if result_of_feeling > 5:
             result_of_feeling = 5

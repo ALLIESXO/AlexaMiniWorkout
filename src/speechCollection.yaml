@@ -57,7 +57,6 @@ DIFFICULTY:
   - Wie soll das Training gestaltet werden? Schwer, normal oder leicht?
   - Soll ich das Workout schwer, normal oder leicht gestalten?
   - Möchtest du ein leichtes, normales oder eher ein schweres Workout?
-  - Darf das Workout anstrengend sein?
   - Wie schwierig darf das Workout sein? Leicht, normal oder schwer?
 
 question:
@@ -91,8 +90,8 @@ FIRST_EXCERCISE:
 
 ## Countdown wird wohl besser mit SSML gemacht.
 COUNTDOWN_START:
-  - </lang> <break time="2s"/> Es geht los <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Go! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Die nächste Übung ist
-  - </lang> <break time="2s"/> mach dich bereit <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Start! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="10s"/> Als nächstes kommt
+  - </lang> <break time="2s"/> Es geht los <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Go! <break time="10s"/> noch 20 Sekunden <break time="7s"/> noch 10 Sekunden <prosody rate="x-slow"> noch <break time="100ms"/> 3 <break time="100ms"/>  2 <break time="100ms"/> 1 <break time="100ms"/> </prosody> Stop! Kurze Pause. Die nächste Übung ist
+  - </lang> <break time="2s"/> mach dich bereit <prosody rate="x-slow"> in <break time="300ms"/> 3 <break time="300ms"/> 2 <break time="300ms"/> 1 <break time="300ms"/> </prosody> Start! <break time="10s"/> noch 20 Sekunden <break time="10s"/> noch 10 Sekunden <break time="7s"/> <prosody rate="x-slow"> noch <break time="100ms"/> 3 <break time="100ms"/>  2 <break time="100ms"/> 1 <break time="100ms"/> </prosody> Stop! Kurze Pause. Als nächstes kommt
 
 COUNTDOWN_START_2:
   -  . Bereit?</speak>

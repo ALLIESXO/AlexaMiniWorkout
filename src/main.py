@@ -397,9 +397,13 @@ def question_pause(spoken_text):
         session.attributes[Attributes.ex_count.value] = session.attributes[Attributes.current_excercise.value]
         return question_next_exercise(spoken_text, 1)
 
+    elif context_state == 'shortcut':
+        session.attributes[Attributes.state.value] = States.RETROSPECTIVE_START.value
+        return question_workout_done(spoken_text)
+
     else:
         session.attributes[Attributes.ex_count.value] = session.attributes[Attributes.current_excercise.value]
-        question(WorkoutController.get_speech(States.PAUSE_ERROR.value))
+        return question(WorkoutController.get_speech(States.PAUSE_ERROR.value))
 
 
 def question_workout_done(spoken_text):
