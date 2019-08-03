@@ -1,12 +1,14 @@
 #!/usr/bin/python
 from db_manager import DbManager
-import random
 import yaml
 import codecs
 import json
+import numpy
+import pendulum
+import random
 from ibm_watson import LanguageTranslatorV3
 from ibm_watson import ToneAnalyzerV3  # pip install --upgrade "ibm-watson>=3.0.3"
-from wit import Wit # pip install wit
+from wit import Wit  # pip install wit
 
 
 class WorkoutController:
@@ -24,6 +26,9 @@ class WorkoutController:
             # TODO: Save user in DB
             return False
 
+    def save_user_workout(self, user_id, workout_id, intensity_rating, daily_form):
+        self.db.save_user_workout(user_id, workout_id, intensity_rating, daily_form)
+
     def get_workout_by_user(self, intensity, duration, body_part, user_id):
         """
         Get a workout depending on the parameters the user told alexa
@@ -33,25 +38,66 @@ class WorkoutController:
         :param user_id:
         :return:
         """
-        workouts = self.db.select_workouts_by_user_parameters(intensity, duration, body_part)
+
+        'get all workouts from db that match the selected intensity value'
+        workouts = self.db.select_workouts_by_user_parameters(intensity)
+        workouts_body_part_match = []
+        workouts_duration_match = []
 
         if workouts.__len__() == 0:
-            'There is no such workout'
-            return -1
+            'there is no such workout'
+            return []
 
         if workouts.__len__() > 1:
-            'Select a workout at random taking the last done workout into account'
+            'get the last user workout from db'
             last_user_workout = self.db.get_last_user_workout(user_id)
 
-            if last_user_workout != -1:
+            index = 0
+            while index < workouts.__len__():
+                workout = workouts[index]
+                workout_removed = False
 
-                for workout in workouts:
-                    if workout[0] == last_user_workout[0]:
-                        workouts.remove(workout)
-                        break
+                'exclude the last done workout from match list'
+                if workout["workout"]["id"] == last_user_workout["workout_id"]:
+                    workout_removed = True
+                else:
+                    'exclude such workouts that do not match the selected body part'
+                    if workout["workout"]["body_part"] != body_part:
+                        workout_removed = True
+                    else:
+                        workouts_body_part_match.append(workout)
 
-            random.shuffle(workouts)
-            return workouts[0]
+                    'exclude such workouts that do not match the selected duration'
+                    if workout["workout"]["duration"] != duration:
+                        workout_removed = True
+                    else:
+                        workouts_duration_match.append(workout)
+
+                if workout_removed:
+                    workouts.remove(workout)
+                    index -= 1
+
+                index += 1
+
+            'if the workouts list does still contain workouts then they exactly match the given parameters' \
+                'select a workout at random to return'
+            if workouts.__len__() > 0:
+                random.shuffle(workouts)
+                return workouts[0]
+
+            'prioritize matching body parts over matching durations' \
+                'select a workout at random to return'
+            if workouts_body_part_match.__len__() > 0:
+                random.shuffle(workouts_body_part_match)
+                return workouts_body_part_match[0]
+
+            if workouts_duration_match.__len__() > 0:
+                random.shuffle(workouts_duration_match)
+                return workouts_duration_match[0]
+
+            'fall back option if no workout was found in db that matches any of the given parameters' \
+                'return the last done workout again'
+            return last_user_workout
         else:
             'return the only workout with this parameters'
             return workouts[0]
@@ -71,21 +117,48 @@ class WorkoutController:
         - The overall development of the user
         :return: the workout selected
         """
-        last_workouts = self.db.get_last_user_workouts(user_id)
 
-        if last_workouts.__len__() > 0:
+        last_user_workout = self.db.get_last_user_workout(user_id)
+
+        if last_user_workout is not None:
             """
             Calculate best workout
             """
-            last_user_workout = last_workouts[0]
-            last_workout = self.db.select_workout_by_id(last_user_workout['workout_id'])['workout'][0]
-            last_intensity = last_user_workout['intensity_rating']
-            last_fitness_rating = last_user_workout['daily_form']
+            low_duration = 7
+            high_duration = 14
 
-            new_workout_intensity = self.calculate_workout_intensity(last_workout['intensity'], last_intensity, todays_form, last_fitness_rating)
+            selected_duration = 7
 
-            return new_workout_intensity
+            last_workout_data = self.db.select_workout_by_id(last_user_workout['workout_id'])['workout'][0]
+            last_rated_intensity = last_user_workout['intensity_rating']
+            last_workout_total_intensity = last_workout_data['intensity']
+            last_workout_duration = last_workout_data['duration']
 
+            new_workout_intensity = self.calculate_workout_intensity(user_id, last_workout_total_intensity,
+                                                                     last_rated_intensity, todays_form)
+
+            selected_intensity = new_workout_intensity
+
+            selected_body_part = self.calculate_workout_body_part(user_id)
+
+            # define intensity and duration by calculated intensity
+            if last_workout_total_intensity < new_workout_intensity and last_workout_duration == low_duration:
+                selected_intensity = last_workout_total_intensity
+                selected_duration = high_duration
+
+            if last_workout_total_intensity < new_workout_intensity and last_workout_duration == high_duration:
+                selected_intensity = new_workout_intensity
+                selected_duration = low_duration
+
+            if last_workout_total_intensity > new_workout_intensity and last_workout_duration == high_duration:
+                selected_intensity = last_workout_total_intensity
+                selected_duration = low_duration
+
+            if last_workout_total_intensity < new_workout_intensity and last_workout_duration == low_duration:
+                selected_intensity = new_workout_intensity
+                selected_duration = high_duration
+
+            return self.get_workout_by_user(selected_intensity, selected_duration, selected_body_part, user_id)
         else:
             """
             The user has no last workouts - Therefore select a basic beginner workout
@@ -97,28 +170,107 @@ class WorkoutController:
             else:
                 return []
 
-    def calculate_workout_intensity(self, last_workout_intensity, last_workout_intensity_rating, todays_form,
-                                    last_workout_form):
+    def calculate_workout_body_part(self, user_id):
+        last_user_workouts = self.db.get_last_user_workouts(user_id)
+
+        if last_user_workouts.__len__() > 1:
+            recent_workout = last_user_workouts[0]
+            previous_workout = last_user_workouts[1]
+
+            today = pendulum.now()
+            week_start = today.start_of('week')
+
+            tz = pendulum.timezone('Europe/Paris')
+            previous_workout_date = pendulum.from_timestamp(previous_workout["workout_date"])
+            previous_workout_date = tz.convert(previous_workout_date)
+
+            if week_start <= previous_workout_date:
+                recent_workout_body_part = self.db.select_workout_by_id(recent_workout['workout_id'])['workout'][0][
+                    "body_part"]
+                previous_workout_body_part = self.db.select_workout_by_id(previous_workout['workout_id'])['workout'][0][
+                    "body_part"]
+
+                body_parts_array = numpy.arange(4)
+
+                body_parts_array = body_parts_array[body_parts_array != recent_workout_body_part]
+
+                body_parts_array = body_parts_array[body_parts_array != previous_workout_body_part]
+
+                if body_parts_array.__len__() == 3:
+                    return random.choice(body_parts_array)
+
+                if body_parts_array.__len__() == 2:
+                    if recent_workout_body_part != 0 and previous_workout_body_part != 0:
+                        return body_parts_array[body_parts_array != 0][0]
+                    else:
+                        return random.choice(body_parts_array)
+            else:
+                return 0
+        else:
+            return 0
+
+    def calculate_workout_intensity(self, user_id, last_workout_total_intensity, last_workout_intensity_rating,
+                                    todays_form, ):
         """
         Based on the given parameters, this function calculates the intensity of the next workout to select
-        :param last_workout_intensity:
+        :param user_id
+        :param last_workout_total_intensity:
         :param last_workout_intensity_rating:
         :param todays_form:
-        :param last_workout_form:
         :return:
         """
+        fitness_median = self.calculate_fitness_median(user_id)
+        last_intense_delta = last_workout_total_intensity - last_workout_intensity_rating
+        form_delta = todays_form - fitness_median
 
-        intensity_result = last_workout_intensity - last_workout_intensity_rating
-        form_result = todays_form - last_workout_form
+        min_intensity = 1
+        max_intensity = 5
 
-        calculated_intensity = 3 + intensity_result + form_result
+        intensity_to_return = min_intensity
 
-        if calculated_intensity < 1:
-            calculated_intensity = 1
-        if calculated_intensity > 5:
-            calculated_intensity = 5
+        if -2 < last_intense_delta < 2:
+            if -2 < form_delta < 2:
+                if last_intense_delta == -1:
+                    if form_delta > 0:
+                        intensity_to_return = last_workout_total_intensity
+                    else:
+                        intensity_to_return = last_workout_total_intensity - 1
+                if last_intense_delta == 0:
+                    intensity_to_return = last_workout_total_intensity
+                if last_intense_delta == 1:
+                    if form_delta < 0:
+                        intensity_to_return = last_workout_total_intensity
+                    else:
+                        intensity_to_return = last_workout_total_intensity + 1
+            if form_delta < -1:
+                intensity_to_return = last_workout_total_intensity - 1
+            if form_delta > 1:
+                intensity_to_return = last_workout_total_intensity + 1
+        else:
+            if last_intense_delta < -1:
+                intensity_to_return = last_workout_total_intensity - 1
+            if last_intense_delta > 1:
+                intensity_to_return = last_workout_total_intensity + 1
 
-        return calculated_intensity
+        if intensity_to_return < min_intensity:
+            intensity_to_return = min_intensity
+
+        if intensity_to_return > max_intensity:
+            intensity_to_return = max_intensity
+
+        return intensity_to_return
+
+    def calculate_fitness_median(self, user_id):
+        """
+        Calculates the median of the last fitness forms of the user
+        :return:
+        """
+        fitness_array = self.db.get_user_fitness_ratings_array(user_id)
+
+        if fitness_array:
+            return numpy.round(numpy.median(fitness_array))
+
+        return 0
 
     # chooses a random sentence from bunch of templates. State maps to the templates of the yaml
     @staticmethod
@@ -339,7 +491,7 @@ class WorkoutController:
         emotion = WorkoutController.analyze_emotion_by_text(spoken_text)
         feeling = WorkoutController.check_context_wit_ai(spoken_text)
 
-        result_of_feeling = (emotion + feeling) / 2
+        result_of_feeling = emotion
 
         if result_of_feeling > 5:
             result_of_feeling = 5
@@ -349,3 +501,4 @@ class WorkoutController:
         result_of_feeling = int(round(result_of_feeling))
 
         return result_of_feeling
+

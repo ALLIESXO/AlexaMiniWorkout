@@ -1,10 +1,11 @@
 import sqlite3
+import pendulum
 from sqlite3 import Error
 
 
 class DbManager:
 
-    def create_connection(self,db_file):
+    def create_connection(self, db_file):
         """ create a database connection to the SQLite database
             specified by the db_file
         :param db_file: database file
@@ -51,11 +52,12 @@ class DbManager:
                 result = cur.execute("SELECT * FROM workouts as w "
                             "WHERE w.name like ?", (name,))
 
-                workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
+                workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result][0]
 
-                workout = {"workout": workouts,"exercises":exercises}
+                workout = {"workout": workouts, "exercises": exercises}
 
                 return workout
+
         except Exception:
             return None
 
@@ -70,19 +72,19 @@ class DbManager:
         with conn:
             cur = conn.cursor()
             result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                        "JOIN workout_exercises as we ON w.id = we.workout_id "
-                        "JOIN exercises as ex ON we.exercise_id = ex.id "
-                        "WHERE w.id like ?", (id,))
+                                 "JOIN workout_exercises as we ON w.id = we.workout_id "
+                                 "JOIN exercises as ex ON we.exercise_id = ex.id "
+                                 "WHERE w.id like ?", (id,))
 
             exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
             cur = conn.cursor()
             result = cur.execute("SELECT * FROM workouts as w "
-                        "WHERE w.id like ?", (id,))
+                                 "WHERE w.id like ?", (id,))
 
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            workout = {"workout": workouts,"exercises":exercises}
+            workout = {"workout": workouts, "exercises": exercises}
 
             return workout
 
@@ -99,27 +101,26 @@ class DbManager:
         with conn:
             cur = conn.cursor()
             result = cur.execute("SELECT * from workouts as w WHERE w.intensity = ? AND w.body_part = ?",
-                        (intensity, body_part))
+                                 (intensity, body_part))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            for row in workouts:
+            for workout_row in workouts:
                 cur = conn.cursor()
-                result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                            "JOIN workout_exercises as we ON w.id = we.workout_id "
-                            "JOIN exercises as ex ON we.exercise_id = ex.id "
-                            "WHERE w.id = ?", (row['id'],))
+                result = cur.execute(
+                    "SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
+                    "JOIN workout_exercises as we ON w.id = we.workout_id "
+                    "JOIN exercises as ex ON we.exercise_id = ex.id "
+                    "WHERE w.id = ?", (workout_row['id'],))
                 exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
-                workout = {"workout": row, "exercises": exercises}
+                workout = {"workout": workout_row, "exercises": exercises}
                 workouts_to_return.append(workout)
 
         return workouts_to_return
 
-    def select_workouts_by_user_parameters(self, intensity, duration, body_part):
+    def select_workouts_by_user_parameters(self, intensity):
         """
         get all workouts by the parameters defined by the user
         :param intensity:
-        :param body_part:
-        :param duration:
         :return:
         """
         conn = self.get_connection()
@@ -127,18 +128,22 @@ class DbManager:
 
         with conn:
             cur = conn.cursor()
-            result = cur.execute("SELECT * from workouts as w WHERE w.intensity = ? AND w.duration = ? AND w.body_part = ?", (intensity,duration,body_part))
+            result = cur.execute(
+                "SELECT * from workouts as w WHERE w.intensity = ?", (intensity,))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
-            for row in workouts:
+            for workout_row in workouts:
                 cur = conn.cursor()
-                result = cur.execute("SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
-                            "JOIN workout_exercises as we ON w.id = we.workout_id "
-                            "JOIN exercises as ex ON we.exercise_id = ex.id "
-                            "WHERE w.id = ?", (row['id'],))
+                result = cur.execute(
+                    "SELECT ex.id, ex.name,ex.description, ex.difficulty, ex.body_part FROM workouts as w "
+                    "JOIN workout_exercises as we ON w.id = we.workout_id "
+                    "JOIN exercises as ex ON we.exercise_id = ex.id "
+                    "WHERE w.id = ?", (workout_row['id'],))
                 exercises = [dict(zip([key[0] for key in cur.description], row)) for row in result]
-                workout = {"workout": row, "exercises": exercises}
+                workout = {"workout": workout_row, "exercises": exercises}
                 workouts_to_return.append(workout)
+
+        print workouts_to_return
 
         return workouts_to_return
 
@@ -153,14 +158,23 @@ class DbManager:
 
         with conn:
             cur = conn.cursor()
-            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? ",
-                        (user_id,))
+            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? order by uw.id desc",
+                                 (user_id,))
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
         if workouts.__len__() > 0:
             return workouts[0]
         else:
-            return []
+            return None
+
+    def save_user_workout(self, user_id, workout_id, intensity_rating, daily_form):
+        conn = self.get_connection()
+
+        date = pendulum.now()
+        with conn:
+            cur = conn.cursor()
+            cur.execute("INSERT INTO user_workouts (workout_id, intensity_rating, daily_form, user_id, workout_date) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)",
+                        (workout_id, intensity_rating, daily_form, user_id))
 
     def get_last_user_workouts(self, user_id):
         """
@@ -173,14 +187,34 @@ class DbManager:
 
         with conn:
             cur = conn.cursor()
-            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? ",
-                        (user_id,))
+            result = cur.execute("SELECT * from user_workouts as uw WHERE uw.user_id = ? order by uw.id desc",
+                                 (user_id,))
 
             workouts = [dict(zip([key[0] for key in cur.description], row)) for row in result]
 
         if workouts.__len__() > 0:
 
-
             return workouts
+        else:
+            return []
+
+    def get_user_fitness_ratings_array(self, user_id):
+        """
+        Returns all done workouts of a user by its id
+        :param user_id:
+        :return:
+        """
+
+        conn = self.get_connection()
+
+        with conn:
+            cur = conn.cursor()
+            result = cur.execute("SELECT daily_form from user_workouts as uw WHERE uw.user_id = ? ",
+                                 (user_id,))
+
+            ratings = result.fetchall()
+
+        if ratings.__len__() > 0:
+            return ratings
         else:
             return []
