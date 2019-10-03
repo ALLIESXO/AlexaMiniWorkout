@@ -1,6 +1,6 @@
 # AlexaMiniWorkout
 
-<img src="https://github.com/ALLIESXO/AlexaMiniWorkout/blob/master/alexa-logo.PNG" width="350">
+<img src="https://github.com/ALLIESXO/AlexaMiniWorkout/blob/master/alexa-logo.png" width="350">
 
 #### Alexa Home Workout App - Work on your body with the help of alexa 
 
