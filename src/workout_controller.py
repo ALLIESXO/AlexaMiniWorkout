@@ -301,7 +301,7 @@ class WorkoutController:
 
         language_translator = LanguageTranslatorV3(
             version='2019-06-25',
-            iam_apikey='CK7wZg3en6KA8DbeS0gNWbougz9qHq9VeTfXn105nuK-',
+            iam_apikey='XXX-XXX-XXX', # replace here api key IBM Language Translator
             url='https://gateway-fra.watsonplatform.net/language-translator/api'
         )
         translated_text = language_translator.translate(text=untranslated_text, model_id='de-en').get_result()
@@ -309,7 +309,7 @@ class WorkoutController:
 
         tone_analyzer = ToneAnalyzerV3(
             version='2019-06-25',
-            iam_apikey='oWwv8FrexMMLhvgv47RGei4aNvZvQGK7i1jmdsXZtnrm',
+            iam_apikey='XXX-XXX-XXX', # replace here api key IBM Watson Tone Analyzer
             url='https://gateway-fra.watsonplatform.net/tone-analyzer/api',
         )
 
@@ -474,7 +474,7 @@ class WorkoutController:
         :return: context as string
         """
 
-        client = Wit('NU6ZT7EUEYOM5NQQHMBHATZBSYZJRPX6')
+        client = Wit('XXX') # replace here API key wit ai
         response = client.message(spoken_text)
         # return found intent
         print response
